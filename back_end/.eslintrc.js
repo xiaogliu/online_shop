@@ -4,9 +4,23 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: 'airbnb',
+
+  // extending recommended config and config derived from eslint-config-prettier
+  extends: ['airbnb', 'prettier'],
+
+  // activating esling-plugin-prettier (--fix stuff)
+  plugins: ['prettier'],
+
   // add your custom rules here,0 === off,1 === warn, 2 === error
   rules: {
+    // customizing prettier rules (unfortunately not many of them are customizable)
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+      },
+    ],
     semi: ['error', 'always'], // 语句强制分号结尾
     camelcase: 'off', // 强制驼峰法命名
     'no-new': 'off', // 禁止在使用new构造一个实例后不赋值

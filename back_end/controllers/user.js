@@ -13,7 +13,9 @@ exports.login = async (ctx) => {
       const user = results[0];
 
       // login success, set cookies
-      ctx.cookies.set('userID', user.id, { httpOnly: false });
+      ctx.cookies.set('userID', user.id, {
+        httpOnly: false,
+      });
 
       ctx.body = {
         status: 0,

@@ -17,10 +17,9 @@ app.use(cors());
 
 // add routes:
 const routes = ['user'];
-routes.forEach((route) => {
+routes.forEach(route => {
   app.use(require(`./routes/${route}`).routes());
 });
-
 
 app.listen(3000);
 console.log('app started at port 3000...');

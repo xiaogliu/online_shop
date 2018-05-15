@@ -19,6 +19,7 @@ Vue.component(TabItem.name, TabItem);
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);
 Vue.use(InfiniteScroll);
+
 new Vue({
   el: '#app',
   router,

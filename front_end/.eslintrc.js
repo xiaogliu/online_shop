@@ -23,6 +23,14 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    // customizing prettier rules (unfortunately not many of them are customizable)
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+      },
+    ],
     // don't require .vue extension when importing
     'import/extensions': [
       'error',
@@ -32,8 +40,6 @@ module.exports = {
         vue: 'never',
       },
     ],
-    // check prettier format error
-    'prettier/prettier': 'error',
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions
     'no-param-reassign': [
@@ -56,5 +62,6 @@ module.exports = {
     ],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'space-before-function-paren': 'off', // 函数定义时括号前面不要有空格
   },
 };
