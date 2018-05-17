@@ -20,8 +20,7 @@ export default {
     async testURL() {
       const res = await requests.test();
     },
-    handleClick(tab, event) {
-    },
+    handleClick(tab, event) {},
   },
 };
 </script>

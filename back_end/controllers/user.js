@@ -1,13 +1,16 @@
 const bluebird = require('bluebird');
 const connectionModel = require('../models/connection');
 
-exports.login = async (ctx) => {
+exports.login = async ctx => {
   try {
     const data = ctx.request.body;
     const connection = connectionModel.getConnection();
     const query = bluebird.promisify(connection.execute.bind(connection));
 
-    const results = await query('select * from user where username = ? and password = ?', [data.username, data.password]);
+    const results = await query(
+      'select * from user where username = ? and password = ?',
+      [data.username, data.password],
+    );
 
     if (results.length) {
       const user = results[0];
@@ -25,15 +28,13 @@ exports.login = async (ctx) => {
         },
       };
     } else {
-      throw new Error('登录失败');
+      throw new Error('用户名或密码错误');
     }
-
     connection.end();
   } catch (e) {
-    console.log(e.message);
+    ctx.status = 401;
     ctx.body = {
-      status: e.code || -1,
-      body: e.message,
+      msg: e.message,
     };
   }
 };

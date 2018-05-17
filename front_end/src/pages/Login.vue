@@ -1,42 +1,32 @@
 <template>
-  <div class="login">
-    <div class="go-home">
-      <button @click="goPage('./signup')">注册</button>
-    </div>
-    <img class='gtb' src="../assets/img/coin.png" alt="gtb">
-    <div class="welcome">
-      <p>欢迎登录</p>
-    </div>
-    <div class="phone">
-      <select v-model='phoneCountrySelected' class='phone-country'>
-        <option v-for="(item, index) in phoneCountryCode" :value="item.code" :key="index">{{item.zh}}（+ {{item.code}}）</option>
-      </select>
-      <input type="text" v-model='username' placeholder="请输入用户名">
-    </div>
-    <div class="pw">
-      <input type="password" maxlength="18" v-model='password' placeholder="请输入登录密码">
-    </div>
-    <!-- <div class="verify-code">
-      <input type="text" maxlength="4" v-model='imgVerifyCode' placeholder="请输入验证码">
-      <div class="spinner" v-show="verifyImgLoading">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-      </div>
-      <img :src="verifyImgBase64" alt="验证码图片" v-show="!verifyImgLoading">
-      <img class="updateImg" src="../assets/img/refresh.png" @click="getVerifyImg">
-    </div> -->
-    <div class="button-login">
-      <button @click="login">登录</button>
-    </div>
+<div class="login">
+  <div class="go-home">
+    <button @click="goPage('./signup')">注册</button>
   </div>
+  <img class='gtb' src="../assets/img/coin.png" alt="gtb">
+  <div class="welcome">
+    <p>欢迎登录</p>
+  </div>
+  <div class="phone">
+    <select v-model='phoneCountrySelected' class='phone-country'>
+      <option v-for="(item, index) in phoneCountryCode" :value="item.code" :key="index">{{item.zh}}（+ {{item.code}}）</option>
+      </select>
+    <input type="text" v-model='username' placeholder="请输入用户名">
+  </div>
+  <div class="pw">
+    <input type="password" maxlength="18" v-model='password' placeholder="请输入登录密码">
+  </div>
+  <div class="button-login">
+    <button @click="login">登录</button>
+  </div>
+</div>
 </template>
 
 <script>
 import requests from '../lib/requests';
 import phoneCountry from '../lib/phoneCountry';
+import Toast from '../components/Toast/index';
+import Loading from '../components/Loading/index';
 
 export default {
   name: 'AccountantAccount',
@@ -49,49 +39,26 @@ export default {
     };
   },
   methods: {
-    async getVerifyImg() {
-      // try {
-      //   const verifyTimer = setTimeout(() => {
-      //     this.verifyImgLoading = true;
-      //   }, 1000);
-      //   const res = await requests.getPicVerifyCode();
-      //   console.log(111);
-      //   // 如果接口1s中之内无法返回显示loading
-      //   if (verifyTimer) {
-      //     clearTimeout(verifyTimer);
-      //   }
-      //   const base64Length = res.data.buff.length;
-      //   const base64Coding = `data:image/gif;base64,${res.data.buff.slice(
-      //     2,
-      //     base64Length - 1,
-      //   )}`;
-      //   this.verifyImgBase64 = base64Coding;
-      //   this.vertificationUID = res.data.uuid;
-      //   this.verifyImgLoading = false;
-      // } catch (e) {
-      //   console.log(222);
-      // }
-    },
     async login() {
       try {
         const bodyPar = {
           username: this.username,
           password: this.password,
         };
-        console.log(bodyPar);
+        Loading.open();
         const res = await requests.login(bodyPar);
-        console.log(res);
+        Loading.close();
+        Toast('登录成功');
       } catch (e) {
-        console.log(e);
+        Loading.close();
+        Toast(e.response.data.msg);
       }
     },
     goPage(page) {
       this.$router.push(page);
     },
   },
-  mounted() {
-    // this.getVerifyImg();
-  },
+  mounted() {},
 };
 </script>
 
@@ -123,12 +90,12 @@ export default {
       color: #fff;
     }
   }
-  .welcome,
+  .button-login,
+  .button-signup,
   .phone,
   .pw,
   .verify-code,
-  .button-login,
-  .button-signup {
+  .welcome {
     width: 100%;
     text-align: center;
   }
@@ -219,8 +186,8 @@ export default {
       }
       @keyframes stretchdelay {
         0%,
-        40%,
-        100% {
+        100%,
+        40% {
           transform: scaleY(0.4);
         }
         20% {

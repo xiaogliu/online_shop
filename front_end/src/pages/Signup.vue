@@ -52,6 +52,7 @@ import requests from '../lib/requests';
 import phoneCountry from '../lib/phoneCountry';
 import { Toast } from 'mint-ui';
 import Utils from '../lib/utils';
+
 export default {
   name: 'AccountantAccount',
   data() {
@@ -104,7 +105,6 @@ export default {
               positon: 'middle',
               duration: 1500,
             });
-            return;
           }
         }
         const bodyPar = {
@@ -138,10 +138,7 @@ export default {
           clearTimeout(verifyTimer);
         }
         const base64Length = res.data.buff.length;
-        const base64Coding = `data:image/gif;base64,${res.data.buff.slice(
-          2,
-          base64Length - 1,
-        )}`;
+        const base64Coding = `data:image/gif;base64,${res.data.buff.slice(2, base64Length - 1)}`;
         this.verifyImgBase64 = base64Coding;
         this.vertificationUID = res.data.uuid;
         this.verifyImgLoading = false;
@@ -149,19 +146,13 @@ export default {
         Toast({
           message: e.response.data.msg,
           duration: 2000,
-        })
+        });
       }
     },
     async signup() {
       try {
-        //信息校验
-        if (
-          !this.phoneNumber ||
-          !this.imgVerifyCode ||
-          !this.loginPwd ||
-          !this.tradePwd ||
-          !this.phoneVerifyCode
-        ) {
+        // 信息校验
+        if (!this.phoneNumber || !this.imgVerifyCode || !this.loginPwd || !this.tradePwd || !this.phoneVerifyCode) {
           Toast({
             message: '您填写的信息不完整',
             position: 'middle',
@@ -170,7 +161,7 @@ export default {
           return;
         }
         // 手机号校验
-        if(!Utils.checkNumber(this.phoneNumber)) {
+        if (!Utils.checkNumber(this.phoneNumber)) {
           Toast({
             message: '请输入正确的手机号',
             position: 'middle',
@@ -179,11 +170,11 @@ export default {
           return;
         }
         // 密码校验
-        if(!Utils.checkPwd(this.tradePwd) || !Utils.checkPwd(this.loginPwd)) {
+        if (!Utils.checkPwd(this.tradePwd) || !Utils.checkPwd(this.loginPwd)) {
           Toast({
             message: '密码为6~18位数字、字母或下划线组合',
             position: 'middle',
-            duration: 1500
+            duration: 1500,
           });
           return;
         }
