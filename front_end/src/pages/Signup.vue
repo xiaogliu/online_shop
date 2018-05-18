@@ -7,19 +7,23 @@
       <p>注册账号</p>
     </div>
     <div class="pw">
-      <input type="text" v-model='phoneNumber' placeholder="请输入手机号">
+      <input type="text" v-model='info.email' placeholder="请输入邮箱地址">
     </div>
     <div class="pw">
-      <input type="text" v-model='username' placeholder="请输入用户名">
+      <input type="text" v-model='info.username' placeholder="请输入用户名">
     </div>
     <div class="pw">
-      <input type="password" maxlength="18" v-model='loginPwd' placeholder="请设置6～18位登录密码">
+      <input type="password" maxlength="18" v-model='info.password' placeholder="请设置6～18位登录密码">
     </div>
-    <div class="pw trade-pw">
-      <input type="password" maxlength="18" v-model='verifyLoginPwd' placeholder="请重新输入6～18位登录密码">
+    <div class="pw">
+      <input type="password" maxlength="18" v-model='info.verifyPassword' placeholder="请重新输入6～18位登录密码">
     </div>
-    <div class="button-login">
-      <button @click="signup">注册</button>
+    <!-- <div class="pw email-verify-code">
+      <input v-model="captcha.code" class="input-email-verify" type="text" maxlength="4" placeholder="请输入邮箱验证码">
+      <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="getPhoneVerify">{{ captcha.msg }}</button>
+    </div> -->
+    <div class="button-signup">
+      <button @click="signUp">注册</button>
     </div>
   </div>
 </template>
@@ -34,34 +38,41 @@ export default {
   name: 'AccountantAccount',
   data() {
     return {
-      username: '',
-      phoneNumber: '',
-      loginPwd: '',
-      verifyLoginPwd: '',
+      info: {
+        username: '',
+        email: '',
+        password: '',
+        verifyPassword: '',
+      },
+      captcha: {
+        isGrey: false,
+        code: '',
+        msg: '获取邮箱验证码',
+      },
     };
   },
   methods: {
     goPage(page) {
       this.$router.push(page);
     },
-    async signup() {
+    async signUp() {
       try {
         // 信息校验
-        if (!this.phoneNumber || !this.loginPwd || !this.verifyLoginPwd || !this.username) {
+        if (!this.info.email || !this.info.password || !this.info.verifyPassword || !this.info.username) {
           Toast('您填写的信息不完整');
-        } else if (!utils.checkPhone(this.phoneNumber)) {
-          Toast('请输入正确的手机号');
-        } else if (!utils.checkPwd(this.loginPwd)) {
+        } else if (!utils.checkEmail(this.info.email)) {
+          Toast('请输入正确的邮箱地址');
+        } else if (!utils.checkPwd(this.info.password)) {
           Toast('密码为6~18位数字、字母或下划线组合');
-        } else if (this.loginPwd !== this.verifyLoginPwd) {
+        } else if (this.info.password !== this.info.verifyPassword) {
           Toast('两次输入的密码不一致');
         } else {
           // 开始注册
           Loading.open();
           const bodyPar = {
-            username: this.username,
-            phone: this.phoneNumber,
-            password: this.loginPwd,
+            username: this.info.username,
+            email: this.info.email,
+            password: this.info.password,
           };
           await requests.signup(bodyPar);
           Loading.close();
@@ -104,7 +115,7 @@ export default {
   }
   .welcome,
   .pw,
-  .button-login {
+  .button-signup {
     width: 100%;
     text-align: center;
   }
@@ -136,7 +147,32 @@ export default {
       padding-left: pxToRem(20px);
     }
   }
-  .button-login {
+  .email-verify-code {
+    width: pxToRem(600px);
+    height: pxToRem(81px);
+    margin-bottom: pxToRem(40px);
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    .input-email-verify {
+      width: pxToRem(320px);
+      // padding-right: pxToRem(px);
+    }
+    .btn-get-email-v {
+      width: pxToRem(240px);
+      height: pxToRem(81px);
+      border: 0;
+      outline: none;
+      background-color: #ffda44;
+      font-size: pxToRem(28px);
+      color: #007480;
+      &:disabled {
+        background-color: #ddd;
+        color: #fff;
+      }
+    }
+  }
+  .button-signup {
     margin-top: pxToRem(50px);
     button {
       width: pxToRem(600px);

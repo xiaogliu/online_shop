@@ -8,7 +8,7 @@
       <p>欢迎登录</p>
     </div>
     <div class="pw">
-      <input type="text" v-model='phoneNumber' placeholder="请输入注册手机号">
+      <input type="text" v-model='email' placeholder="请输入注册邮箱">
     </div>
     <div class="pw">
       <input type="password" maxlength="18" v-model='password' placeholder="请输入登录密码">
@@ -28,7 +28,7 @@ export default {
   name: 'AccountantAccount',
   data() {
     return {
-      phoneNumber: '',
+      email: '',
       password: '',
     };
   },
@@ -38,11 +38,11 @@ export default {
     },
     async login() {
       try {
-        if (!this.phoneNumber || !this.password) {
+        if (!this.email || !this.password) {
           Toast('您填写的信息不完整');
         } else {
           const bodyPar = {
-            phone: this.phoneNumber,
+            email: this.email,
             password: this.password,
           };
           Loading.open();

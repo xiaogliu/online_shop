@@ -8,8 +8,8 @@ exports.login = async ctx => {
     const query = bluebird.promisify(connection.execute.bind(connection));
 
     const results = await query(
-      'SELECT phone, password FROM user WHERE phone = ? AND password = ?',
-      [data.phone, data.password],
+      'SELECT email, password FROM user WHERE email = ? AND password = ?',
+      [data.email, data.password],
     );
 
     if (results.length) {
@@ -24,11 +24,11 @@ exports.login = async ctx => {
         status: 0,
         data: {
           id: user.id,
-          name: user.phone,
+          email: user.email,
         },
       };
     } else {
-      throw new Error('用户名或密码错误');
+      throw new Error('邮箱或密码错误');
     }
     connection.end();
   } catch (e) {
@@ -46,8 +46,8 @@ exports.signup = async ctx => {
     const query = bluebird.promisify(connection.execute.bind(connection));
 
     // 返回的是数据，如果匹配内容，数组长度不为 1
-    const searchPhone = await query('SELECT phone FROM user WHERE phone = ?', [
-      data.phone,
+    const searchPhone = await query('SELECT email FROM user WHERE email = ?', [
+      data.email,
     ]);
 
     const searchUsername = await query(
@@ -59,14 +59,14 @@ exports.signup = async ctx => {
       const result = await query(
         `INSERT INTO user(
           username,
+          email,
           password,
-          createdAt,
-          phone)
+          createdAt)
         VALUES(
           '${data.username}',
+          '${data.email}',
           '${data.password}',
-          ${connection.escape(new Date())},
-          '${data.phone}')`,
+          ${connection.escape(new Date())})`,
       );
 
       if (result) {
@@ -80,7 +80,7 @@ exports.signup = async ctx => {
         throw new Error('DB操作失败');
       }
     } else if (searchPhone.length) {
-      throw new Error('该手机号已注册');
+      throw new Error('该邮箱已注册');
     } else {
       throw new Error('该用户名已注册');
     }
