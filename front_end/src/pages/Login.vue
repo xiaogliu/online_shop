@@ -1,30 +1,26 @@
 <template>
-<div class="login">
-  <div class="go-home">
-    <button @click="goPage('./signup')">注册</button>
+  <div class="login">
+    <div class="go-home">
+      <button @click="goPage('./signup')">注册</button>
+    </div>
+    <img class='gtb' src="../assets/img/coin.png" alt="gtb">
+    <div class="welcome">
+      <p>欢迎登录</p>
+    </div>
+    <div class="pw">
+      <input type="text" v-model='phoneNumber' placeholder="请输入注册手机号">
+    </div>
+    <div class="pw">
+      <input type="password" maxlength="18" v-model='password' placeholder="请输入登录密码">
+    </div>
+    <div class="button-login">
+      <button @click="login">登录</button>
+    </div>
   </div>
-  <img class='gtb' src="../assets/img/coin.png" alt="gtb">
-  <div class="welcome">
-    <p>欢迎登录</p>
-  </div>
-  <div class="phone">
-    <select v-model='phoneCountrySelected' class='phone-country'>
-      <option v-for="(item, index) in phoneCountryCode" :value="item.code" :key="index">{{item.zh}}（+ {{item.code}}）</option>
-      </select>
-    <input type="text" v-model='username' placeholder="请输入用户名">
-  </div>
-  <div class="pw">
-    <input type="password" maxlength="18" v-model='password' placeholder="请输入登录密码">
-  </div>
-  <div class="button-login">
-    <button @click="login">登录</button>
-  </div>
-</div>
 </template>
 
 <script>
 import requests from '../lib/requests';
-import phoneCountry from '../lib/phoneCountry';
 import Toast from '../components/Toast/index';
 import Loading from '../components/Loading/index';
 
@@ -32,33 +28,34 @@ export default {
   name: 'AccountantAccount',
   data() {
     return {
-      phoneCountryCode: phoneCountry,
-      phoneCountrySelected: '86',
-      username: '',
+      phoneNumber: '',
       password: '',
     };
   },
   methods: {
+    goPage(page) {
+      this.$router.push(page);
+    },
     async login() {
       try {
-        const bodyPar = {
-          username: this.username,
-          password: this.password,
-        };
-        Loading.open();
-        const res = await requests.login(bodyPar);
-        Loading.close();
-        Toast('登录成功');
+        if (!this.phoneNumber || !this.password) {
+          Toast('您填写的信息不完整');
+        } else {
+          const bodyPar = {
+            phone: this.phoneNumber,
+            password: this.password,
+          };
+          Loading.open();
+          await requests.login(bodyPar);
+          Loading.close();
+          Toast('登录成功');
+        }
       } catch (e) {
         Loading.close();
         Toast(e.response.data.msg);
       }
     },
-    goPage(page) {
-      this.$router.push(page);
-    },
   },
-  mounted() {},
 };
 </script>
 
@@ -67,7 +64,6 @@ export default {
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  // padding-bottom: pxToRem(50px);
   background: url('../assets/img/login_bg.jpg') 100% / contain;
   .gtb {
     width: pxToRem(149px);
@@ -91,10 +87,7 @@ export default {
     }
   }
   .button-login,
-  .button-signup,
-  .phone,
   .pw,
-  .verify-code,
   .welcome {
     width: 100%;
     text-align: center;
@@ -109,9 +102,7 @@ export default {
       color: #fff;
     }
   }
-  .phone,
-  .pw,
-  .verify-code {
+  .pw {
     width: pxToRem(600px);
     margin: 0 auto;
     input {
@@ -123,77 +114,10 @@ export default {
       padding-left: pxToRem(100px);
     }
   }
-  .phone {
-    display: flex;
-    .phone-country {
-      width: pxToRem(100px);
-      height: pxToRem(81px);
-      position: absolute;
-      border: 0;
-      outline: none;
-      background-color: #fff;
-      font-size: pxToRem(28px);
-    }
-  }
   .pw {
     margin: pxToRem(50px) auto;
     input {
       padding-left: pxToRem(20px);
-    }
-  }
-  .verify-code {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: pxToRem(50px) auto;
-    input {
-      width: pxToRem(300px);
-      padding: 0 pxToRem(20px);
-    }
-    img {
-      height: pxToRem(81px);
-      margin-left: pxToRem(20px);
-    }
-    .updateImg {
-      height: 18px;
-    }
-    .spinner {
-      display: inline-block;
-      margin: pxToRem(10px) pxToRem(10px) pxToRem(10px) 0;
-      width: pxToRem(200px);
-      height: pxToRem(60px);
-      text-align: center;
-      font-size: pxToRem(10px);
-      div {
-        background-color: #ddd;
-        height: 100%;
-        width: pxToRem(8px);
-        margin: 0 pxToRem(3px);
-        display: inline-block;
-        animation: stretchdelay 1.2s infinite ease-in-out;
-      }
-      .rect2 {
-        animation-delay: -1.1s;
-      }
-      .rect3 {
-        animation-delay: -1s;
-      }
-      .rect4 {
-        animation-delay: -0.9s;
-      }
-      .rect5 {
-        animation-delay: -0.8s;
-      }
-      @keyframes stretchdelay {
-        0%,
-        100%,
-        40% {
-          transform: scaleY(0.4);
-        }
-        20% {
-          transform: scaleY(1);
-        }
-      }
     }
   }
   .button-login {
@@ -206,18 +130,6 @@ export default {
       color: #007480;
       font-size: pxToRem(34px);
       background-color: #ffda44;
-    }
-  }
-  .button-signup {
-    margin-top: pxToRem(250px);
-    button {
-      width: pxToRem(600px);
-      height: pxToRem(100px);
-      line-height: pxToRem(100px);
-      margin: 0 auto;
-      color: #ffda44;
-      font-size: pxToRem(28px);
-      background-color: transparent;
     }
   }
 }

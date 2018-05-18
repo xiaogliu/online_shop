@@ -1,12 +1,12 @@
 import ajax from './ajax';
 
 export default {
-  /**
-   * 获取验证码图片
-   * @returns {AxiosPromise}
-   */
-  //  登录
+  // 登录
   login(bodyPar) {
-    return ajax('POST', '/login', { bodyParams: bodyPar });
+    return ajax('PUT', '/login', { bodyParams: bodyPar });
+  },
+  // 注册
+  signup(bodyPar) {
+    return ajax('POST', '/signup', { bodyParams: bodyPar });
   },
 };
