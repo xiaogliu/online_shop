@@ -61,12 +61,13 @@ exports.signup = async ctx => {
           username,
           email,
           password,
-          createdAt)
-        VALUES(
+          createdAt
+        ) VALUES(
           '${data.username}',
           '${data.email}',
           '${data.password}',
-          ${connection.escape(new Date())})`,
+          ${connection.escape(new Date())}
+        )`,
       );
 
       if (result) {

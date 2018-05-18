@@ -9,4 +9,8 @@ export default {
   signup(bodyPar) {
     return ajax('POST', '/signup', { bodyParams: bodyPar });
   },
+  // 获取邮箱验证码
+  sendCaptcha(bodyPar) {
+    return ajax('POST', '/sendCaptcha', { bodyParams: bodyPar });
+  },
 };

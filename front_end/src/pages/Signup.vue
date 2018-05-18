@@ -18,10 +18,10 @@
     <div class="pw">
       <input type="password" maxlength="18" v-model='info.verifyPassword' placeholder="请重新输入6～18位登录密码">
     </div>
-    <!-- <div class="pw email-verify-code">
-      <input v-model="captcha.code" class="input-email-verify" type="text" maxlength="4" placeholder="请输入邮箱验证码">
-      <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="getPhoneVerify">{{ captcha.msg }}</button>
-    </div> -->
+    <div class="pw email-verify-code">
+      <input v-model="captcha.code" class="input-email-verify" type="text" placeholder="请输入邮箱验证码">
+      <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="getCaptcha">{{ captcha.msg }}</button>
+    </div>
     <div class="button-signup">
       <button @click="signUp">注册</button>
     </div>
@@ -55,6 +55,38 @@ export default {
     goPage(page) {
       this.$router.push(page);
     },
+    // 点击获取邮箱验证码之后倒计时
+    countDown() {
+      for (let i = 0; i <= 60; i++) {
+        setTimeout(() => {
+          if (i === 60) {
+            this.captcha.msg = '获取邮箱验证码';
+            this.captcha.isGrey = false;
+          } else {
+            const t = `${Number(60 - i)}s`;
+            this.captcha.msg = t;
+          }
+        }, i * 1000);
+      }
+    },
+    // 获取邮箱验证码
+    async getCaptcha() {
+      try {
+        if (!utils.checkEmail(this.info.email)) {
+          Toast('请输入正确的邮箱地址');
+        } else {
+          this.captcha.isGrey = true;
+          this.countDown();
+          const bodyPar = {
+            email: this.info.email,
+          };
+          await requests.sendCaptcha(bodyPar);
+        }
+      } catch(e) {
+        Toast(e.response.data.msg);
+      }
+    },
+    // 注册
     async signUp() {
       try {
         // 信息校验

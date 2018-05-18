@@ -16,7 +16,7 @@ app.use(bodyParser());
 app.use(cors());
 
 // add routes:
-const routes = ['user'];
+const routes = ['user', 'utils'];
 routes.forEach(route => {
   app.use(require(`./routes/${route}`).routes());
 });
