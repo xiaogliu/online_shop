@@ -1,6 +1,7 @@
 const bluebird = require('bluebird');
 const connectionModel = require('../models/connection');
 
+// 登录
 exports.login = async ctx => {
   try {
     const data = ctx.request.body;
@@ -32,6 +33,7 @@ exports.login = async ctx => {
     }
     connection.end();
   } catch (e) {
+    console.log('[/login] error:', e.message, e.stack);
     ctx.status = 401;
     ctx.body = {
       msg: e.message,
@@ -39,6 +41,7 @@ exports.login = async ctx => {
   }
 };
 
+// 注册
 exports.signup = async ctx => {
   try {
     const data = ctx.request.body;
@@ -56,7 +59,7 @@ exports.signup = async ctx => {
     );
 
     if (!searchPhone.length && !searchUsername.length) {
-      const result = await query(
+      await query(
         `INSERT INTO user(
           username,
           email,
@@ -69,17 +72,12 @@ exports.signup = async ctx => {
           ${connection.escape(new Date())}
         )`,
       );
-
-      if (result) {
-        ctx.body = {
-          status: 0,
-          data: {
-            msg: '注册成功',
-          },
-        };
-      } else {
-        throw new Error('DB操作失败');
-      }
+      ctx.body = {
+        status: 0,
+        data: {
+          msg: '注册成功',
+        },
+      };
     } else if (searchPhone.length) {
       throw new Error('该邮箱已注册');
     } else {

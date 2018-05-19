@@ -24,7 +24,7 @@ const Toast = (options = {}) => {
   const instance = new ToastConstructor().$mount(document.createElement('div'));
 
   // 设置参数
-  const duration = options.duration || 2500;
+  const duration = options.duration || 3500;
   // 调用的时候支持直接输入字符串
   instance.message = typeof options === 'string' ? options : options.message;
   instance.position = options.position || 'top';

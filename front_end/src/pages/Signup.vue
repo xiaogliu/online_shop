@@ -81,6 +81,8 @@ export default {
             email: this.info.email,
           };
           await requests.sendCaptcha(bodyPar);
+
+          Toast('邮件发送成功，验证码10分钟内有效');
         }
       } catch(e) {
         Toast(e.response.data.msg);
