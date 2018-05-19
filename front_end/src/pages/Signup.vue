@@ -20,10 +20,10 @@
     </div>
     <div class="pw email-verify-code">
       <input v-model="captcha.code" class="input-email-verify" type="text" placeholder="请输入邮箱验证码">
-      <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="getCaptcha">{{ captcha.msg }}</button>
+      <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="processMethods.getCaptcha">{{ captcha.msg }}</button>
     </div>
     <div class="button-signup">
-      <button @click="signUp">注册</button>
+      <button @click="processMethods.signup">注册</button>
     </div>
   </div>
 </template>
@@ -48,6 +48,10 @@ export default {
         isGrey: false,
         code: '',
         msg: '获取邮箱验证码',
+      },
+      processMethods: {
+        getCaptcha: null,
+        signup: null,
       },
     };
   },
@@ -75,24 +79,23 @@ export default {
         if (!utils.checkEmail(this.info.email)) {
           Toast('请输入正确的邮箱地址');
         } else {
-          this.captcha.isGrey = true;
-          this.countDown();
           const bodyPar = {
             email: this.info.email,
           };
           await requests.sendCaptcha(bodyPar);
-
-          Toast('邮件发送成功，验证码10分钟内有效');
+          this.captcha.isGrey = true;
+          this.countDown();
+          Toast('邮件发送成功，验证码30分钟内有效');
         }
-      } catch(e) {
+      } catch (e) {
         Toast(e.response.data.msg);
       }
     },
     // 注册
-    async signUp() {
+    async signup() {
       try {
         // 信息校验
-        if (!this.info.email || !this.info.password || !this.info.verifyPassword || !this.info.username) {
+        if (!this.info.email || !this.info.password || !this.info.verifyPassword || !this.info.username || !this.captcha.code) {
           Toast('您填写的信息不完整');
         } else if (!utils.checkEmail(this.info.email)) {
           Toast('请输入正确的邮箱地址');
@@ -107,6 +110,7 @@ export default {
             username: this.info.username,
             email: this.info.email,
             password: this.info.password,
+            captcha: this.captcha.code,
           };
           await requests.signup(bodyPar);
           Loading.close();
@@ -123,6 +127,10 @@ export default {
         Toast(e.response.data.msg);
       }
     },
+  },
+  created() {
+    this.processMethods.getCaptcha = utils.throttle(this.getCaptcha, this, 2000);
+    this.processMethods.signup = utils.throttle(this.signup, this, 2000);
   },
 };
 </script>

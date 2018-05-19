@@ -25,4 +25,17 @@ export default {
     const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
     return reg.test(value);
   },
+  // 截流函数，method 回调函数，context 上下文，delay 延迟函数，
+  throttle(method, context, delay) {
+    let wait = false;
+    return function(...args) {
+      if (!wait) {
+        method.apply(context, args);
+        wait = true;
+        setTimeout(() => {
+          wait = false;
+        }, delay);
+      }
+    };
+  },
 };

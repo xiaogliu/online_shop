@@ -9,6 +9,14 @@ exports.sendCaptcha = async ctx => {
     const connection = connectionModel.getConnection();
     const query = bluebird.promisify(connection.execute.bind(connection));
 
+    // 检测邮箱是否注册
+    const searchEmail = await query('SELECT email FROM user WHERE email = ?', [
+      data.email,
+    ]);
+    if (searchEmail.length) {
+      throw new Error('该邮箱已注册');
+    }
+
     // 6位随机数字字符串
     const captcha = Math.random()
       .toFixed(4)
@@ -29,12 +37,10 @@ exports.sendCaptcha = async ctx => {
     await query(
       `INSERT INTO captcha(
         captcha,
-        email,
-        createdAt
+        email
       ) VALUES(
         '${captcha}',
-        '${data.email}',
-        ${connection.escape(new Date())}
+        '${data.email}'
       )`,
     );
 

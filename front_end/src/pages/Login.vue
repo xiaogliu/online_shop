@@ -14,13 +14,14 @@
       <input type="password" maxlength="18" v-model='password' placeholder="请输入登录密码">
     </div>
     <div class="button-login">
-      <button @click="login">登录</button>
+      <button @click="processMethods.login">登录</button>
     </div>
   </div>
 </template>
 
 <script>
 import requests from '../lib/requests';
+import utils from '../lib/utils';
 import Toast from '../components/Toast/index';
 import Loading from '../components/Loading/index';
 
@@ -30,6 +31,9 @@ export default {
     return {
       email: '',
       password: '',
+      processMethods: {
+        login: null,
+      },
     };
   },
   methods: {
@@ -55,6 +59,9 @@ export default {
         Toast(e.response.data.msg);
       }
     },
+  },
+  created() {
+    this.processMethods.login = utils.throttle(this.login, this, 2000);
   },
 };
 </script>
