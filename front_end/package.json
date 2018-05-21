@@ -18,16 +18,12 @@
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.2"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.2",
-    "babel-plugin-component": "^1.1.0",
+    "babel-plugin-component": "^1.1.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
@@ -56,5 +52,34 @@
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
+  },
+  "stylelint": {
+    "rules": {
+      "block-no-empty": null,
+      "color-no-invalid-hex": true,
+      "comment-empty-line-before": [
+        "always",
+        {
+          "ignore": ["stylelint-commands", "after-comment"]
+        }
+      ],
+      "declaration-colon-space-after": "always",
+      "media-query-list-comma-newline-after": "always",
+      "indentation": [
+        "2",
+        {
+          "except": ["value"]
+        }
+      ],
+      "max-empty-lines": 2,
+      "rule-empty-line-before": [
+        "always",
+        {
+          "except": ["first-nested"],
+          "ignore": ["after-comment"]
+        }
+      ],
+      "unit-whitelist": ["em", "rem", "%", "s"]
+    }
   }
 }

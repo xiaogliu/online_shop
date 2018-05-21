@@ -43,7 +43,7 @@ module.exports = {
                 options: {
                   resources: path.resolve(
                     __dirname,
-                    './src/assets/common/global.scss',
+                    './src/assets/common/css/global.scss',
                   ),
                 },
               },
@@ -59,7 +59,7 @@ module.exports = {
                 options: {
                   resources: path.resolve(
                     __dirname,
-                    './src/assets/common/global.scss',
+                    './src/assets/common/css/global.scss',
                   ),
                 },
               },
@@ -77,7 +77,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]',
+          name: '[name].[ext]?[hash:8]',
         },
       },
       {
@@ -85,7 +85,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[ext]?[hash]',
+          name: '[name].[ext]?[hash:8]',
         },
       },
     ],

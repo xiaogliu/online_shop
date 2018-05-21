@@ -38,4 +38,19 @@ export default {
       }
     };
   },
+  changeImgSrc(imgObj) {
+    if (window.devicePixelRatio > 2.5) {
+      const imagesArr = Object.keys(imgObj);
+      imagesArr.forEach(e => {
+        const twoRatioImg = imgObj[e];
+        const pointNumb = twoRatioImg.lastIndexOf('.');
+        // 拼接新的字符串
+        const threeRatioImg = `${twoRatioImg.slice(
+          0,
+          pointNumb,
+        )}@3x${twoRatioImg.slice(pointNumb)}`;
+        imgObj[e] = threeRatioImg;
+      });
+    }
+  },
 };
