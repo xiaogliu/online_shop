@@ -1,21 +1,21 @@
 <template>
-<div class="home">
-  <div class="logo">
-    <img src="../assets/img/coin.png" alt="GTB">
+  <div class="home">
+    <div class="logo">
+      <img src="../assets/img/coin.png" alt="GTB">
+    </div>
+    <div class="price">
+      <p>当前价格</p>
+      <!-- <p>1GTB = {{ gtcPrice / 100 }}USD</p> -->
+    </div>
+    <div class="account">
+      <p>当前数量</p>
+      <!-- <p>{{ utils.formatMoney(gtcNum) }}</p> -->
+    </div>
+    <div class="button">
+      <!-- <button v-show="this.isLogin" @click="buy">立即购买</button> -->
+      <button @click="goPage">登录/注册</button>
+    </div>
   </div>
-  <div class="price">
-    <p>当前价格</p>
-    <!-- <p>1GTB = {{ gtcPrice / 100 }}USD</p> -->
-  </div>
-  <div class="account">
-    <p>当前数量</p>
-    <!-- <p>{{ utils.formatMoney(gtcNum) }}</p> -->
-  </div>
-  <div class="button">
-    <!-- <button v-show="this.isLogin" @click="buy">立即购买</button> -->
-    <button @click="goPage">登录/注册</button>
-  </div>
-</div>
 </template>
 
 <script>
@@ -33,26 +33,9 @@ export default {
     };
   },
   methods: {
-    // async getGTCInfo() {
-    //   try {
-    //     const res = await requests.getGTCPrice();
-    //     this.gtcPrice = res.data.gtd_price;
-    //     this.gtcNum = res.data.gtd_rem;
-    //   } catch (e) {
-    //     Toast({
-    //       message: e.response.data.msg,
-    //       duration: 2000,
-    //     });
-    //   }
-    // },
     goPage() {
       this.$router.push('/login');
     },
-  },
-  created() {
-    // this.isLogin = this.$store.state.isLogin;
-    // this.getGTCInfo();
-    // this.utils = utils;
   },
 };
 </script>

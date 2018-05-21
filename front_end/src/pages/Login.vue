@@ -3,7 +3,7 @@
     <div class="go-home">
       <button @click="goPage('./signup')">注册</button>
     </div>
-    <img class='gtb' src="../assets/img/coin.png" alt="gtb">
+    <img class='gtb' src="../assets/img/coin.png" alt="gtb" @click="goPage('./home')">
     <div class="welcome">
       <p>欢迎登录</p>
     </div>
@@ -15,6 +15,7 @@
     </div>
     <div class="button-login">
       <button @click="processMethods.login">登录</button>
+      <img src="../assets/img/home.svg" alt="home">
     </div>
   </div>
 </template>
