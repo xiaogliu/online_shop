@@ -15,6 +15,24 @@
       <!-- <button v-show="this.isLogin" @click="buy">立即购买</button> -->
       <button @click="goPage">登录/注册</button>
     </div>
+    <div class="tabbar">
+      <div class="tab-item">
+        <img src="../assets/img/home.svg" alt="home">
+        <p>首页</p>
+      </div>
+      <div class="tab-item">
+        <img src="../assets/img/all.svg" alt="home">
+        <p>分类</p>
+      </div>
+      <div class="tab-item">
+        <img src="../assets/img/cart.svg" alt="home">
+        <p>购物车</p>
+      </div>
+      <div class="tab-item">
+        <img src="../assets/img/people.svg" alt="home">
+        <p>我的</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,6 +48,7 @@ export default {
       gtcPrice: 0,
       gtcNum: 0,
       utils: '',
+      selected: '外卖',
     };
   },
   methods: {
@@ -81,6 +100,30 @@ export default {
       color: #007480;
       font-size: pxToRem(34px);
       background-color: #ffda44;
+    }
+  }
+  .tabbar {
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: pxToRem(96px);
+    padding: 0 pxToRem(30px);
+    background-color: #fff;
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: pxToRem(86px);
+      font-size: pxToRem(22px);
+      text-align: center;
+      img {
+        width: pxToRem(56px);
+        height: pxToRem(56px);
+      };
     }
   }
 }

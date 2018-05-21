@@ -3,7 +3,8 @@
     <div class="go-home">
       <button @click="goPage('./signup')">注册</button>
     </div>
-    <img class='gtb' src="../assets/img/coin.png" alt="gtb" @click="goPage('./home')">
+    <!-- <img class='gtb' src="../assets/img/coin.png" alt="gtb" @click="goPage('./home')"> -->
+    <img class='gtb' :src="imgSrc.coin" alt="gtb" @click="goPage('./home')">
     <div class="welcome">
       <p>欢迎登录</p>
     </div>
@@ -15,7 +16,6 @@
     </div>
     <div class="button-login">
       <button @click="processMethods.login">登录</button>
-      <img src="../assets/img/home.svg" alt="home">
     </div>
   </div>
 </template>
@@ -34,6 +34,10 @@ export default {
       password: '',
       processMethods: {
         login: null,
+      },
+      imgSrc: {
+        coin: require('../assets/img/coin.png'),
+        coin3x: require('../assets/img/coin@3x.png'),
       },
     };
   },
@@ -62,7 +66,13 @@ export default {
     },
   },
   created() {
+    utils.changeImgSrc(this.imgSrc);
     this.processMethods.login = utils.throttle(this.login, this, 2000);
+  },
+  mounted() {
+    // utils.changeImgSrc(this.imgSrc);
+    // utils.changeImgSrc();
+    // this.imgSrc.coin = require('../assets/img/coin@3x.png');
   },
 };
 </script>
@@ -72,7 +82,9 @@ export default {
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  background: url('../assets/img/login_bg.jpg') 100% / contain;
+  background: 100% / contain;
+  @include bgImageResize('../assets/img/login_bg', 'jpg');
+
   .gtb {
     width: pxToRem(149px);
     height: pxToRem(149px);

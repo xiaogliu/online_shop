@@ -1,0 +1,24 @@
+// rem 转换函数
+@function pxToRem($px) {
+  $rem: 75px;
+  @return ($px / $rem) + rem;
+}
+
+// 高清图片适配
+$is-hidpi: '(-webkit-min-device-pixel-ratio: 2.5),
+(min--moz-device-pixel-ratio: 2.5),
+(-o-min-device-pixel-ratio: 5/2),
+(min-device-pixel-ratio: 2.5),
+(min-resolution: 2.5dppx)';
+@mixin bgImageResize($path, $type) {
+  background-image: url($path+'.'+$type);
+  @media #{$is-hidpi} {
+    & {
+      background-image: url($path+'@3x.'+$type);
+    }
+  }
+}
+
+body {
+  color: #343434;
+}
