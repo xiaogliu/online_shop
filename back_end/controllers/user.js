@@ -9,7 +9,7 @@ exports.login = async ctx => {
     const query = bluebird.promisify(connection.execute.bind(connection));
 
     const results = await query(
-      'SELECT email, password FROM user WHERE email = ? AND password = ?',
+      'SELECT uid, email FROM user WHERE email = ? AND password = ?',
       [data.email, data.password],
     );
 
@@ -17,14 +17,14 @@ exports.login = async ctx => {
       const user = results[0];
 
       // login success, set cookies
-      ctx.cookies.set('userID', user.id, {
+      ctx.cookies.set('userID', user.uid, {
         httpOnly: false,
       });
 
       ctx.body = {
         status: 0,
         data: {
-          id: user.id,
+          uid: user.uid,
           email: user.email,
         },
       };

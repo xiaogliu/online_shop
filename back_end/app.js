@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const cors = require('@koa/cors');
+// const cors = require('@koa/cors');
 
 const app = new Koa();
 
@@ -12,8 +12,9 @@ const app = new Koa();
 
 // parse request body:
 app.use(bodyParser());
-// allow 跨域请求
-app.use(cors());
+
+// allow 跨域请求，通过 nginx 设置反向代理，不需要设置跨域
+// app.use(cors());
 
 // add routes:
 const routes = ['user', 'utils'];

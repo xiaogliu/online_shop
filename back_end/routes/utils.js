@@ -6,7 +6,7 @@ const utils = require('../controllers/utils');
 
 const router = new Router();
 
-router.post('/sendCaptcha', utils.sendCaptcha);
+router.post('/api/sendCaptcha', utils.sendCaptcha);
 
 // export default router;
 

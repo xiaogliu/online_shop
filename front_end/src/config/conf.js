@@ -4,7 +4,8 @@ let conf = {};
 
 if (env === 'development') {
   conf = {
-    server_host: 'http://127.0.0.1:3000',
+    server_host: `${window.location.protocol}//${window.location.host}`,
+    // server_host: 'http://127.0.0.1:3000',
   };
 } else {
   conf = {
