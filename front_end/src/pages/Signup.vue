@@ -80,6 +80,7 @@ export default {
           Toast('请输入正确的邮箱地址');
         } else {
           const bodyPar = {
+            action: 'signup',
             email: this.info.email,
           };
           await requests.sendCaptcha(bodyPar);

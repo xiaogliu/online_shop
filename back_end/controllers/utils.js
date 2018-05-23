@@ -2,7 +2,7 @@ const bluebird = require('bluebird');
 const connectionModel = require('../models/connection');
 const sendMail = require('../utils/email');
 
-// 发送验证码
+// 发送验证码，注册页、修改密码页
 exports.sendCaptcha = async ctx => {
   try {
     const data = ctx.request.body;
@@ -13,8 +13,10 @@ exports.sendCaptcha = async ctx => {
     const searchEmail = await query('SELECT email FROM user WHERE email = ?', [
       data.email,
     ]);
-    if (searchEmail.length) {
+    if (data.action === 'signup' && searchEmail.length) {
       throw new Error('该邮箱已注册');
+    } else if (data.action === 'resetPwd' && !searchEmail.length) {
+      throw new Error('该邮箱未注册');
     }
 
     // 6位随机数字字符串
@@ -31,7 +33,7 @@ exports.sendCaptcha = async ctx => {
     };
 
     // 发送邮件
-    await sendMail(mail);
+    // await sendMail(mail);
 
     // 把发送的验证码写入数据库 captcha 表
     await query(
@@ -40,8 +42,9 @@ exports.sendCaptcha = async ctx => {
         email
       ) VALUES(
         '${captcha}',
-        '${data.email}'
+        ?
       )`,
+      [data.email],
     );
 
     ctx.body = {

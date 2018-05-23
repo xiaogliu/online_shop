@@ -9,6 +9,10 @@ export default {
   signup(bodyPar) {
     return ajax('POST', '/api/signup', { bodyParams: bodyPar });
   },
+  // 重置密码
+  resetPwd(bodyPar) {
+    return ajax('PUT', '/api/resetPwd', { bodyParams: bodyPar });
+  },
   // 获取邮箱验证码
   sendCaptcha(bodyPar) {
     return ajax('POST', '/api/sendCaptcha', { bodyParams: bodyPar });

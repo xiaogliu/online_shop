@@ -16,6 +16,7 @@
     </div>
     <div class="button-login">
       <button @click="processMethods.login">登录</button>
+      <p><router-link to="./resetPwd">忘记密码？</router-link></p>
     </div>
   </div>
 </template>

@@ -5,5 +5,6 @@ const router = new Router();
 
 router.put('/api/login', user.login);
 router.post('/api/signup', user.signup);
+router.put('/api/resetPwd', user.resetPwd);
 
 module.exports = router;
