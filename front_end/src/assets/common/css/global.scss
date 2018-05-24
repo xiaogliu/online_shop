@@ -1,3 +1,4 @@
+// ***************** function/mixin start ***************** //
 // rem 转换函数
 @function pxToRem($px) {
   $rem: 75px;
@@ -5,20 +6,54 @@
 }
 
 // 高清图片适配
-$is-hidpi: '(-webkit-min-device-pixel-ratio: 2.5),
+$isHidpi: '(-webkit-min-device-pixel-ratio: 2.5),
 (min--moz-device-pixel-ratio: 2.5),
 (-o-min-device-pixel-ratio: 5/2),
 (min-device-pixel-ratio: 2.5),
 (min-resolution: 2.5dppx)';
+
 @mixin bgImageResize($path, $type) {
   background-image: url($path+'.'+$type);
-  @media #{$is-hidpi} {
+  @media #{$isHidpi} {
     & {
       background-image: url($path+'@3x.'+$type);
     }
   }
 }
+// ***************** function/mixin end ***************** //
 
+
+// ***************** variable start ***************** //
+// 标准色
+$bgColor: #f7f7f7;
+$colorMain: #ff5757;
+$colorAssist: #f69210;
+
+// 标准字号
+$fontSizeMain: pxToRem(28px);
+$fontSizeLargeX: pxToRem(34px);
+$fontSizeLarge: pxToRem(32px);
+$fontSizeMedium: pxToRem(26px);
+$fontSizeSmall: pxToRem(24px);
+$fontSizeSmallX: pxToRem(22px);
+
+// 字体颜色
+$fontColorMain: #343434;
+$fontColorAssist: #707070;
+// $fontColorAssist: #a0a0a0;
+$fontColorPlaceholder: #c4c4c4;
+$fontColorClickable: #ff5757;
+
+// 按钮
+$btnColorClickable: #ff5757;
+$btnColorClicked: #e23b3b;
+$btnColorDisable: #c4c4c4;
+$btnBorderRadius: pxToRem(10px);
+// ***************** variable end ***************** //
+
+// ***************** pre-setting start ***************** //
 body {
-  color: #343434;
+  color: $fontColorMain;
+  font-size: $fontSizeMain;
 }
+// ***************** pre-setting end ***************** //

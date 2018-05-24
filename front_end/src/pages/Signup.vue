@@ -152,7 +152,7 @@ export default {
       padding: 0 pxToRem(24px);
       height: pxToRem(88px);
       background: 0;
-      font-size: pxToRem(28px);
+      font-size: $fontSizeMain;
       color: #fff;
     }
   }
@@ -180,7 +180,7 @@ export default {
       width: pxToRem(600px);
       height: pxToRem(81px);
       line-height: pxToRem(81px);
-      font-size: pxToRem(28px);
+      font-size: $fontSizeMain;
       padding-left: pxToRem(100px);
     }
   }
@@ -207,7 +207,7 @@ export default {
       border: 0;
       outline: none;
       background-color: #ffda44;
-      font-size: pxToRem(28px);
+      font-size: $fontSizeMain;
       color: #007480;
       &:disabled {
         background-color: #ddd;
@@ -223,7 +223,7 @@ export default {
       line-height: pxToRem(100px);
       margin: 0 auto;
       color: #007480;
-      font-size: pxToRem(34px);
+      font-size: $fontSizeLargeX;
       background-color: #ffda44;
     }
   }

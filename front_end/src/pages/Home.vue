@@ -118,12 +118,12 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       height: pxToRem(86px);
-      font-size: pxToRem(22px);
+      font-size: $fontSizeSmallX;
       text-align: center;
       img {
         width: pxToRem(56px);
         height: pxToRem(56px);
-      };
+      }
     }
   }
 }

@@ -5,8 +5,7 @@ import store from './lib/store';
 import router from './router';
 import components from './components';
 import './lib/rem';
-import './assets/common/css/reset.css';
-import './assets/common/css/my_mint.scss';
+import './assets/common/css/index.scss';
 
 // mint-ui 组件，按需引入
 Vue.component(Tabbar.name, Tabbar);

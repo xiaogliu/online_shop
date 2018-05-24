@@ -3,6 +3,7 @@ node_modules/
 dist/
 npm-debug.log
 yarn-error.log
+design/
 
 # 避免不同环境下环境变量相互覆盖
 env.js
