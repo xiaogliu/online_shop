@@ -13,6 +13,13 @@ export default {
   components: {
     // AppHeader,
   },
+  data() {
+    return {
+      preImg: {
+        loading: require('./assets/img/loading.svg'),
+      },
+    };
+  },
 };
 </script>
 <style lang="scss">

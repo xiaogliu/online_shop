@@ -14,19 +14,22 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      // 尽量不要直接访问 /home 路径，而是直接访问 /home/main
+      // 不使用默认子路由是为了使 tab 路由切换看上去更一致
       path: '/home',
       name: 'home',
+      redirect: '/home/main',
       component: Home,
       children: [
-        {
-          path: 'allProduct',
-          name: 'allProduct',
-          component: AllProduct,
-        },
         {
           path: 'main',
           name: 'main',
           component: Main,
+        },
+        {
+          path: 'allProduct',
+          name: 'allProduct',
+          component: AllProduct,
         },
         {
           path: 'cart',
@@ -40,18 +43,6 @@ export default new Router({
         },
       ],
     },
-    // {
-    //   path: '/capital',
-    //   name: 'index',
-    //   component: Index,
-    //   // children: [
-    //   //   {
-    //   //     path: '/trade',
-    //   //     name: 'trade',
-    //   //     component: Trade,
-    //   //   },
-    //   // ],
-    // },
     {
       path: '/login',
       name: 'login',
