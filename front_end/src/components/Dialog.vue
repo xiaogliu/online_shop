@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dialog {
   $header-footer-height: pxToRem(80px);
   $border-radius: pxToRem(20px);

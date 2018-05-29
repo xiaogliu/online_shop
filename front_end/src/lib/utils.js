@@ -38,6 +38,15 @@ export default {
       }
     };
   },
+  // 防抖动函数，method 回调函数，context 上下文，event 传入的时间，delay 延迟函数
+  debounce(method, context, event, delay) {
+    if (method.tId) {
+      clearTimeout();
+    }
+    method.tId = setTimeout(() => {
+      method.call(context, event);
+    }, delay);
+  },
   changeImgSrc(imgObj) {
     if (window.devicePixelRatio > 2.5) {
       const imagesArr = Object.keys(imgObj);

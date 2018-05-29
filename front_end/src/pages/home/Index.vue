@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <transition name='fade'>
-      <router-view></router-view>
-    </transition>
+    <!-- <transition name='fade'> -->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    <!-- </transition> -->
     <div class="tabbar">
       <router-link to="/home/main" tag='div' class="tab-item">
         <div class="tab-icon tab-icon-home"></div>
@@ -82,6 +84,7 @@ export default {
       .tab-icon {
         width: pxToRem(56px);
         height: pxToRem(56px);
+        background-size: 100%;
         transition: all .3s;
       }
       .tab-icon-home {
