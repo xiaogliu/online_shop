@@ -59,7 +59,6 @@ export default {
 .home {
   width: 100%;
   min-height: 100vh;
-  background: url('../../assets/img/home_bg.jpg') 100% / cover;
   .tabbar {
     position: fixed;
     bottom: 0;
@@ -71,6 +70,7 @@ export default {
     height: pxToRem(96px);
     padding: 0 pxToRem(30px);
     background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     .tab-item {
       display: flex;
       flex-direction: column;

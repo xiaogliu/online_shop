@@ -1,7 +1,16 @@
 <template>
   <div>
     <div v-if="recommends.length" class="slider-wrapper" ref="sliderWrapper">
-      <slider>
+      <slider :interval="1000">
+        <div class="page">
+          <p>Page 1</p>
+        </div>
+        <div class="page">
+          <p>Page 2</p>
+        </div>
+        <div class="page">
+          <p>Page 3</p>
+        </div>
       </slider>
     </div>
   </div>

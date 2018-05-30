@@ -62,4 +62,8 @@ export default {
       });
     }
   },
+  // px to rem 在 js 中使用，和 scss 中转换内容相同
+  pxToRem(size) {
+    return `${size / 75}rem`;
+  }
 };

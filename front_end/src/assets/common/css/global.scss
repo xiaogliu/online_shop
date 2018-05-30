@@ -39,8 +39,8 @@ $fontSizeSmallX: pxToRem(22px);
 
 // 字体颜色
 $fontColorMain: #343434;
-$fontColorAssist: #707070;
-// $fontColorAssist: #a0a0a0;
+// $fontColorAssist: #707070;
+$fontColorAssist: #a0a0a0;
 $fontColorPlaceholder: #c4c4c4;
 $fontColorClickable: #ff5757;
 
@@ -55,5 +55,9 @@ $btnBorderRadius: pxToRem(10px);
 body {
   color: $fontColorMain;
   font-size: $fontSizeMain;
+  box-sizing: border-box;
+}
+div {
+  box-sizing: border-box;
 }
 // ***************** pre-setting end ***************** //

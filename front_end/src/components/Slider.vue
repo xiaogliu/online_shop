@@ -1,18 +1,13 @@
 <template>
   <div id="swiper" ref="swiper">
     <div id="swiperContainer" ref="swiperContainer">
-      <div class="page">
-        <p>Page 1</p>
-      </div>
-      <div class="page">
-        <p>Page 2</p>
-      </div>
-      <div class="page">
-        <p>Page 3</p>
-      </div>
+      <slot></slot>
     </div>
     <div class="nav">
-      <p class="nav-dot" :class="{active: currentPageIndex === index}" v-for="(item, index) in navDots">
+      <p class="nav-dot"
+        :class="{active: currentPageIndex === index}"
+        v-for="(item, index) in navDots"
+        :key="index">
         <span></span>
       </p>
     </div>
@@ -33,13 +28,16 @@ export default {
       type: Number,
       default: 4000,
     },
+    swiperHeight: {
+      type: Number,
+      default: 360,
+    },
   },
   data() {
     return {
       swiper: null,
       swiperContainer: null,
       pages: null,
-      pagesNum: 0,
       pageWidth: 0,
       currentContainerLeft: 0,
       navDots: [],
@@ -53,7 +51,8 @@ export default {
   },
   methods: {
     init() {
-      // this.swiper = this.$refs.swiper;
+      this.swiper = this.$refs.swiper;
+      this.swiper.style.height = utils.pxToRem(this.swiperHeight);
       this.swiperContainer = this.$refs.swiperContainer;
       this.pages = this.swiperContainer.children;
       this.pages = [].slice.call(this.pages);
@@ -172,20 +171,20 @@ export default {
 
 <style lang="scss" scoped>
 #swiper {
+  position: relative;
   width: 100vw;
-  height: pxToRem(500px);
   transition: width 500ms;
   overflow: hidden;
   #swiperContainer {
     position: absolute;
-    height: pxToRem(500px);
+    height: 100%;
     display: flex;
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     touch-action: none;
     .page {
       width: 100vw;
       transition: width 500ms;
-      height: pxToRem(500px);
+      height: 100%;
     }
   }
   .nav {
@@ -220,30 +219,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .page p {
-    font-size: pxToRem(66px);
-  }
-
-  .page:nth-child(1) {
-    background: blue no-repeat center/cover;
-  }
-
-  .page:nth-child(2) {
-    background: red no-repeat center/cover;
-  }
-
-  .page:nth-child(3) {
-    background: green no-repeat center/cover;
-  }
-
-  .page:nth-child(4) {
-    background: blue no-repeat center/cover;
-  }
-
-  .page:nth-child(5) {
-    background: red no-repeat center/cover;
   }
 }
 </style>
