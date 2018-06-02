@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <article class="main">
     <slider>
       <div class="page" v-for="item in recommends" :key="item.id">
         <a :href="item.linkUrl">
@@ -7,14 +7,10 @@
         </a>
       </div>
     </slider>
-    <div class="badge">
+    <section class="badge">
       <div>
         <img src="../../assets/img/favor.svg" alt="好货推荐">
         <p>好货推荐</p>
-      </div>
-      <div>
-        <img src="../../assets/img/redpacket.svg" alt="领取红包">
-        <p>领取红包</p>
       </div>
       <div>
         <img src="../../assets/img/shop.svg" alt="精品店铺">
@@ -24,8 +20,12 @@
         <img src="../../assets/img/discount.svg" alt="限时折扣">
         <p>限时折扣</p>
       </div>
-    </div>
-    <div class="home-product">
+      <div>
+        <img src="../../assets/img/about.svg" alt="领取红包">
+        <p>平台介绍</p>
+      </div>
+    </section>
+    <section class="home-recommends2">
       <!-- 广告商品 -->
       <div class="left">
         <div class="text">
@@ -34,7 +34,7 @@
           <p>印度神油 印度神油</p>
         </div>
         <div class="img">
-          <img src="../../assets/img/india.jpg" alt="印度神油">
+          <img src="../../assets/img/india.jpg" alt="好货推荐">
         </div>
       </div>
       <div class="right">
@@ -44,7 +44,7 @@
             <p>印度神油 印度神油</p>
           </div>
           <div class="img">
-            <img src="../../assets/img/india.jpg" alt="印度神油">
+            <img src="../../assets/img/india.jpg" alt="好货推荐">
           </div>
         </div>
         <div class="bottom">
@@ -53,22 +53,56 @@
             <p>印度神油 印度神油</p>
           </div>
           <div class="img">
-            <img src="../../assets/img/india.jpg" alt="印度神油">
+            <img src="../../assets/img/india.jpg" alt="好货推荐">
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <section class="more-product">
+      <p class="intro">
+        <span>-</span>
+        <span>更</span>
+        <span>多</span>
+        <span>好</span>
+        <span>货</span>
+        <span>-</span>
+      </p>
+      <div class="more-main">
+        <div class="more-item">
+          <img src="../../assets/img/india.jpg" alt="更多产品">
+          <div class="item-text">
+            <p>这里是介绍</p>
+            <p>¥ 199.00</p>
+          </div>
+        </div>
+        <div class="more-item">
+          <img src="../../assets/img/india.jpg" alt="更多产品">
+          <div class="item-text">
+            <p>{{ utils.limitStringLength('这里是介绍这里是介绍这里是介绍这里是介绍这里是介绍这里是介绍这里是介绍', 25) }}</p>
+            <p>¥ 199.00</p>
+          </div>
+        </div>
+        <div class="more-item">
+          <img src="../../assets/img/india.jpg" alt="更多产品">
+          <div class="item-text">
+            <p>这里是介绍</p>
+            <p>¥ 199.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
 </template>
 
 <script>
 // import requests from '../lib/requests';
-// import utils from '../lib/utils';
+import utils from '../../lib/utils';
 
 export default {
-  name: 'main',
+  name: 'homeMain',
   data() {
     return {
+      utils: null,
       recommends: [
         {
           linkUrl: 'http://oifk6rgqz.bkt.clouddn.com/1.jpg',
@@ -92,6 +126,9 @@ export default {
     goPage() {
       this.$router.push('/login');
     },
+  },
+  created() {
+    this.utils = utils;
   },
 };
 </script>
@@ -117,7 +154,7 @@ export default {
       }
     }
   }
-  .home-product {
+  .home-recommends2 {
     display: flex;
     justify-content: space-between;
     margin-top: pxToRem(20px);
@@ -152,7 +189,8 @@ export default {
       flex-direction: column;
       flex: 1;
       height: 100%;
-      .top, .bottom {
+      .top,
+      .bottom {
         display: flex;
         flex-direction: column;
         padding: pxToRem(20px) 0 0 pxToRem(20px);
@@ -184,6 +222,68 @@ export default {
         .text {
           h2 {
             color: #9985ca;
+          }
+        }
+      }
+    }
+  }
+  .more-product {
+    .intro {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: pxToRem(80px);
+      font-size: $fontSizeLarge;
+      span {
+        display: inline-block;
+        margin: 0 pxToRem(4px);
+        &:nth-child(1),
+        &:nth-child(2) {
+          color: #ff5757;
+        }
+        &:nth-child(3) {
+          color: #ff8181;
+        }
+        &:nth-child(4) {
+          color: #ffa357;
+        }
+        &:nth-child(5),
+        &:nth-child(6) {
+          color: #ffba81;
+        }
+      }
+    }
+    .more-main {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: pxToRem(100px);
+      .more-item {
+        box-sizing: border-box;
+        width: pxToRem(370px);
+        margin-bottom: pxToRem(10px);
+        background-color: #fff;
+        &:nth-child(even) {
+          margin-left: pxToRem(5px);
+        }
+        &:nth-child(odd) {
+          margin-right: pxToRem(5px);
+        }
+        img {
+          width: pxToRem(370px);
+          height: pxToRem(370px);
+        }
+        .item-text {
+          p:first-child {
+            height: pxToRem(74px);
+            padding: 0 pxToRem(10px);
+            font-size: $fontSizeSmall;
+          }
+          p:last-child {
+            height: pxToRem(50px);
+            line-height: pxToRem(50px);
+            padding: 0 pxToRem(10px);
+            font-size: $fontSizeMain;
+            color: $colorMain;
           }
         }
       }
