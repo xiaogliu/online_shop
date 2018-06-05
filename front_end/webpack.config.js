@@ -43,7 +43,7 @@ module.exports = {
                 options: {
                   resources: path.resolve(
                     __dirname,
-                    './src/assets/common/css/global.scss',
+                    './src/assets/css/global.scss',
                   ),
                 },
               },
@@ -59,7 +59,7 @@ module.exports = {
                 options: {
                   resources: path.resolve(
                     __dirname,
-                    './src/assets/common/css/global.scss',
+                    './src/assets/css/global.scss',
                   ),
                 },
               },

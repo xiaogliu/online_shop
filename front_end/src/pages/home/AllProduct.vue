@@ -46,37 +46,6 @@
     <img v-lazy="imgSrc.coin" >
     <img v-lazy="imgSrc.coin" >
     <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
-    <img v-lazy="imgSrc.coin" >
   </div>
 </template>
 

@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import requests from '../lib/requests';
-import utils from '../lib/utils';
+import requests from '../api/requests';
+import utils from '../assets/js/utils';
 import Toast from '../components/Toast/index';
 import Loading from '../components/Loading/index';
 
@@ -96,7 +96,13 @@ export default {
     async signup() {
       try {
         // 信息校验
-        if (!this.info.email || !this.info.password || !this.info.verifyPassword || !this.info.username || !this.captcha.code) {
+        if (
+          !this.info.email ||
+          !this.info.password ||
+          !this.info.verifyPassword ||
+          !this.info.username ||
+          !this.captcha.code
+        ) {
           Toast('您填写的信息不完整');
         } else if (!utils.checkEmail(this.info.email)) {
           Toast('请输入正确的邮箱地址');
@@ -130,7 +136,11 @@ export default {
     },
   },
   created() {
-    this.processMethods.getCaptcha = utils.throttle(this.getCaptcha, this, 2000);
+    this.processMethods.getCaptcha = utils.throttle(
+      this.getCaptcha,
+      this,
+      2000,
+    );
     this.processMethods.signup = utils.throttle(this.signup, this, 2000);
   },
 };

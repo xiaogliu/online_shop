@@ -79,13 +79,13 @@ export default {
       font-size: $fontSizeSmallX;
       text-align: center;
       p {
-        transition: all .3s;
+        transition: all 0.3s;
       }
       .tab-icon {
         width: pxToRem(56px);
         height: pxToRem(56px);
         background-size: 100%;
-        transition: all .3s;
+        transition: all 0.3s;
       }
       .tab-icon-home {
         background-image: url('../../assets/img/home.svg');
@@ -119,9 +119,9 @@ export default {
     }
   }
   .fade-enter-active {
-    transition: opacity .3s;
+    transition: opacity 0.3s;
   }
-  .fade-enter{
+  .fade-enter {
     opacity: 0;
   }
 }

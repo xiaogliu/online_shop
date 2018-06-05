@@ -2,11 +2,11 @@ import Vue from 'vue';
 import VueLazyload from 'vue-lazyload';
 import { Tabbar, TabItem } from 'mint-ui';
 import App from './App.vue';
-import store from './lib/store';
+import store from './store/store';
 import router from './router';
 import components from './components';
-import './lib/rem';
-import './assets/common/css/index.scss';
+import './assets/js/rem';
+import './assets/css/index.scss';
 
 Vue.use(VueLazyload, {
   // error: 'dist/error.png',

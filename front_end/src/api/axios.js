@@ -13,19 +13,6 @@ const host = conf.server_host;
  * @returns {AxiosPromise}
  */
 export default function(method, url, { bodyParams = {}, urlParams = {} }) {
-  // 是否存在Access Token，存在则写入HTTP头
-  const headers = {};
-  try {
-    const accessToken = sessionStorage.getItem('AccessToken');
-    const userID = sessionStorage.getItem('UserID');
-    if (accessToken && userID) {
-      headers.AccessToken = accessToken;
-      headers.UserID = userID;
-    }
-  } catch (e) {
-    console.log(e.response);
-  }
-
   // 将url参数写入URL
   let urlParamsStr = '';
   Object.keys(urlParams).forEach(element => {
@@ -39,7 +26,6 @@ export default function(method, url, { bodyParams = {}, urlParams = {} }) {
   return axios.request({
     url: `${host}${url}${urlParamsStr}`,
     method,
-    headers,
     data: bodyParams,
   });
 }

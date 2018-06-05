@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import requests from '../lib/requests';
-import utils from '../lib/utils';
+import requests from '../api/requests';
+import utils from '../assets/js/utils';
 import Toast from '../components/Toast/index';
 import Loading from '../components/Loading/index';
 

@@ -96,7 +96,7 @@
 
 <script>
 // import requests from '../lib/requests';
-import utils from '../../lib/utils';
+import utils from '../../assets/js/utils';
 
 export default {
   name: 'homeMain',
