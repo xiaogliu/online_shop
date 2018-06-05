@@ -1,6 +1,5 @@
 const bluebird = require('bluebird');
 const connectionModel = require('../models/connection');
-const sendMail = require('../utils/email');
 
 // 登录
 exports.login = async ctx => {

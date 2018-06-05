@@ -3,7 +3,7 @@ const connectionModel = require('../models/connection');
 const sendMail = require('../utils/email');
 
 // 发送验证码，注册页、修改密码页
-exports.sendCaptcha = async ctx => {
+module.exports = async ctx => {
   try {
     const data = ctx.request.body;
     const connection = connectionModel.getConnection();
@@ -26,14 +26,14 @@ exports.sendCaptcha = async ctx => {
 
     // 邮件内容
     const mail = {
-      from: '在线商城 <online_shop@163.com>',
-      subject: '在线商城注册验证码-测试',
+      from: '小瓶商城 <online_shop@163.com>',
+      subject: '小瓶商城注册验证码-测试',
       to: data.email,
-      text: `您好，您正在注册在线商城，注册验证码为：${captcha}`,
+      text: `您好，您正在注册小瓶商城（www.happyshopping.com），注册验证码为：${captcha}`,
     };
 
     // 发送邮件
-    // await sendMail(mail);
+    await sendMail(mail);
 
     // 把发送的验证码写入数据库 captcha 表
     await query(

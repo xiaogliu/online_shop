@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 // const cors = require('@koa/cors');
+const routes = require('./routes');
 
 const app = new Koa();
 
@@ -17,10 +18,7 @@ app.use(bodyParser());
 // app.use(cors());
 
 // add routes:
-const routes = ['user', 'utils'];
-routes.forEach(route => {
-  app.use(require(`./routes/${route}`).routes());
-});
+app.use(routes.routes());
 
 app.listen(3000);
 console.log('app started at port 3000...');
