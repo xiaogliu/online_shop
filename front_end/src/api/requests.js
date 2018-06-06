@@ -17,4 +17,9 @@ export default {
   sendCaptcha(bodyPar) {
     return axios('POST', '/api/sendCaptcha', { bodyParams: bodyPar });
   },
+  // 获取swiper信息
+  // swiper 获取 swiper 图片，main 获取中间产品列表，bottom 获取底部产品列表
+  getHomeInfo(urlPar) {
+    return axios('GET', '/api/swiper', { urlParams: urlPar });
+  },
 };

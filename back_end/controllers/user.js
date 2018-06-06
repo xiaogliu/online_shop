@@ -69,7 +69,7 @@ exports.signup = async ctx => {
 
     // 判断验证码是否有效：获取发送的验证码，最近一条 30 分钟内为有效验证码
     const searchCaptcha = await query(
-      'SELECT captcha, email, UNIX_TIMESTAMP(createdAt) FROM captcha WHERE email = ?',
+      'SELECT captcha, email, UNIX_TIMESTAMP(created_at) FROM captcha WHERE email = ?',
       [data.email],
     );
     if (!searchCaptcha.length) {
@@ -81,11 +81,11 @@ exports.signup = async ctx => {
       // 升序
       return v1 - v2;
     };
-    searchCaptcha.sort(compare('UNIX_TIMESTAMP(createdAt)'));
+    searchCaptcha.sort(compare('UNIX_TIMESTAMP(created_at)'));
     const lastCaptcha = searchCaptcha[searchCaptcha.length - 1];
     const now = parseInt(new Date().getTime() / 1000, 10);
     // 数据校验
-    if (now - lastCaptcha['UNIX_TIMESTAMP(createdAt)'] > 60 * 30) {
+    if (now - lastCaptcha['UNIX_TIMESTAMP(created_at)'] > 60 * 30) {
       throw new Error('验证码过期，请重新获取');
     } else if (
       lastCaptcha.captcha !== data.captcha ||
@@ -100,7 +100,7 @@ exports.signup = async ctx => {
         username,
         email,
         password,
-        createdAt
+        created_at
       ) VALUES(
         ?,
         ?,
@@ -141,7 +141,7 @@ exports.resetPwd = async ctx => {
 
     // 判断验证码是否有效：获取发送的验证码，最近一条 30 分钟内为有效验证码
     const searchCaptcha = await query(
-      'SELECT captcha, email, UNIX_TIMESTAMP(createdAt) FROM captcha WHERE email = ?',
+      'SELECT captcha, email, UNIX_TIMESTAMP(created_at) FROM captcha WHERE email = ?',
       [data.email],
     );
     if (!searchCaptcha.length) {
@@ -153,11 +153,11 @@ exports.resetPwd = async ctx => {
       // 升序
       return v1 - v2;
     };
-    searchCaptcha.sort(compare('UNIX_TIMESTAMP(createdAt)'));
+    searchCaptcha.sort(compare('UNIX_TIMESTAMP(created_at)'));
     const lastCaptcha = searchCaptcha[searchCaptcha.length - 1];
     const now = parseInt(new Date().getTime() / 1000, 10);
     // 数据校验
-    if (now - lastCaptcha['UNIX_TIMESTAMP(createdAt)'] > 60 * 30) {
+    if (now - lastCaptcha['UNIX_TIMESTAMP(created_at)'] > 60 * 30) {
       throw new Error('验证码过期，请重新获取');
     } else if (
       lastCaptcha.captcha !== data.captcha ||

@@ -1,10 +1,10 @@
 import Dialog from './Dialog.vue';
-import Slider from './Slider.vue';
+import Swiper from './Swiper.vue';
 
 const components = {
   install(Vue) {
     Vue.component('Dialog', Dialog);
-    Vue.component('Slider', Slider);
+    Vue.component('Swiper', Swiper);
   },
 };
 

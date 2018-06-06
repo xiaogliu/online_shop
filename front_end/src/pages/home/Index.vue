@@ -33,9 +33,6 @@
 </template>
 
 <script>
-// import requests from '../lib/requests';
-// import utils from '../lib/utils';
-
 export default {
   name: 'AccountantAccount',
   data() {

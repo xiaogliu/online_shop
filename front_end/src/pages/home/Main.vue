@@ -1,12 +1,12 @@
 <template>
   <article class="main">
-    <slider>
-      <div class="page" v-for="item in recommends" :key="item.id">
-        <a :href="item.linkUrl">
-          <img :src="item.picUrl" alt="首页消息">
+    <swiper v-if="products.swiper.length">
+      <div class="page" v-for="item in products.swiper" :key="item.id">
+        <a :href="item.path">
+          <img :src="item.img_url" alt="首页消息">
         </a>
       </div>
-    </slider>
+    </swiper>
     <section class="badge">
       <div>
         <img src="../../assets/img/favor.svg" alt="好货推荐">
@@ -29,31 +29,30 @@
       <!-- 广告商品 -->
       <div class="left">
         <div class="text">
-          <h2>印度神油</h2>
-          <p>印度神油 印度神油</p>
-          <p>印度神油 印度神油</p>
+          <h2>今日推荐</h2>
+          <p>{{ products.main[0].title }}</p>
         </div>
         <div class="img">
-          <img src="../../assets/img/india.jpg" alt="好货推荐">
+          <img v-lazy="products.main[0].img_url" alt="好货推荐">
         </div>
       </div>
       <div class="right">
         <div class="top">
           <div class="text">
-            <h2>印度神油</h2>
-            <p>印度神油 印度神油</p>
+            <h2>精挑细选</h2>
+            <p>{{ products.main[1].title }}</p>
           </div>
           <div class="img">
-            <img src="../../assets/img/india.jpg" alt="好货推荐">
+            <img v-lazy="products.main[1].img_url" alt="好货推荐">
           </div>
         </div>
         <div class="bottom">
           <div class="text">
-            <h2>印度神油</h2>
-            <p>印度神油 印度神油</p>
+            <h2>不容错过</h2>
+            <p>{{ products.main[2].title }}</p>
           </div>
           <div class="img">
-            <img src="../../assets/img/india.jpg" alt="好货推荐">
+            <img v-lazy="products.main[2].img_url" alt="好货推荐">
           </div>
         </div>
       </div>
@@ -68,25 +67,11 @@
         <span>-</span>
       </p>
       <div class="more-main">
-        <div class="more-item">
-          <img src="../../assets/img/india.jpg" alt="更多产品">
+        <div class="more-item" v-for="item in products.bottom" :key="item.id">
+          <img v-lazy="item.img_url" alt="更多产品">
           <div class="item-text">
-            <p>这里是介绍</p>
-            <p>¥ 199.00</p>
-          </div>
-        </div>
-        <div class="more-item">
-          <img src="../../assets/img/india.jpg" alt="更多产品">
-          <div class="item-text">
-            <p>{{ utils.limitStringLength('这里是介绍这里是介绍这里是介绍这里是介绍这里是介绍这里是介绍这里是介绍', 25) }}</p>
-            <p>¥ 199.00</p>
-          </div>
-        </div>
-        <div class="more-item">
-          <img src="../../assets/img/india.jpg" alt="更多产品">
-          <div class="item-text">
-            <p>这里是介绍</p>
-            <p>¥ 199.00</p>
+            <p>{{ utils.limitStringLength(item.description, 25) }}</p>
+            <p>¥ {{ item.price }}</p>
           </div>
         </div>
       </div>
@@ -95,40 +80,58 @@
 </template>
 
 <script>
-// import requests from '../lib/requests';
+import requests from '../../api/requests';
 import utils from '../../assets/js/utils';
+import Toast from '../../components/Toast/index';
+import Loading from '../../components/Loading/index';
 
 export default {
   name: 'homeMain',
   data() {
     return {
       utils: null,
-      recommends: [
-        {
-          linkUrl: 'http://oifk6rgqz.bkt.clouddn.com/1.jpg',
-          picUrl: 'http://oifk6rgqz.bkt.clouddn.com/1.jpg',
-          id: 0,
-        },
-        {
-          linkUrl: 'http://oifk6rgqz.bkt.clouddn.com/2.jpg',
-          picUrl: 'http://oifk6rgqz.bkt.clouddn.com/2.jpg',
-          id: 1,
-        },
-        {
-          linkUrl: 'http://oifk6rgqz.bkt.clouddn.com/3.jpg',
-          picUrl: 'http://oifk6rgqz.bkt.clouddn.com/3.jpg',
-          id: 2,
-        },
-      ],
+      products: {
+        swiper: [],
+        main: [],
+        bottom: [],
+      },
     };
   },
   methods: {
     goPage() {
       this.$router.push('/login');
     },
+    async getHomeProducts(type) {
+      try {
+        const res = await requests.getHomeInfo({
+          type,
+        });
+        switch (type) {
+          case 'swiper':
+            this.products.swiper = res.data.data;
+            break;
+          case 'main':
+            this.products.main = res.data.data;
+            break;
+          case 'bottom':
+            this.products.bottom = res.data.data;
+            break;
+          default:
+            break;
+        }
+        Loading.close();
+      } catch (e) {
+        Toast(e.response.data.msg);
+        Loading.close();
+      }
+    },
   },
-  created() {
+  async created() {
+    Loading.open();
     this.utils = utils;
+    this.getHomeProducts('swiper');
+    this.getHomeProducts('main');
+    this.getHomeProducts('bottom');
   },
 };
 </script>
