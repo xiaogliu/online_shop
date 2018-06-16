@@ -102,6 +102,7 @@ module.exports = {
     },
     extensions: ['*', '.js', '.vue', '.json'],
   },
+  // devtool: 'cheap-module-eval-source-map',
   devServer: {
     historyApiFallback: true,
     noInfo: true,
@@ -110,7 +111,7 @@ module.exports = {
   performance: {
     hints: false,
   },
-  devtool: '#eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
@@ -130,7 +131,7 @@ if (process.env.NODE_ENV === 'production') {
     publicPath: './',
     filename: 'build.[chunkHash:8].js',
   };
-  module.exports.devtool = '#source-map';
+  module.exports.devtool = 'cheap-module-source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new CleanWebpackPlugin(['dist']),

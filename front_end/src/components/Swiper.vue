@@ -60,7 +60,9 @@ export default {
       this.navDots = new Array(this.pagesNum);
       this.pageWidth = document.documentElement.clientWidth;
       this.currentContainerLeft = -this.pageWidth;
-      this.swiperContainer.style.transform = `translate3d(${this.currentContainerLeft}px, 0, 0)`;
+      this.swiperContainer.style.transform = `translate3d(${
+        this.currentContainerLeft
+      }px, 0, 0)`;
     },
     copyPage() {
       // 处理前后页面：复制最后一页到第一页，复制第二页到最后一页
@@ -172,7 +174,7 @@ export default {
 <style lang="scss" scoped>
 #swiper {
   position: relative;
-  width: 100vw;
+  width: pxToRem(750px);
   transition: width 500ms;
   overflow: hidden;
   #swiperContainer {
@@ -182,9 +184,13 @@ export default {
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     touch-action: none;
     .page {
-      width: 100vw;
+      width: pxToRem(750px);
       transition: width 500ms;
       height: 100%;
+      img {
+        width: pxToRem(750px);
+        max-width: pxToRem(750px);
+      }
     }
   }
   .nav {
@@ -213,12 +219,6 @@ export default {
         background-color: #fff;
       }
     }
-  }
-
-  .page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 </style>
