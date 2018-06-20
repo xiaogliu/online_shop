@@ -30,7 +30,7 @@ VALUES(
   '印度神油 你值得拥有',
   '印度神油 你值得拥有值得拥有值得拥有值得拥有值得拥有值得拥有',
   19999,
-  'http://oifk6rgqz.bkt.clouddn.com/india.png',
+  'http://oifk6rgqz.bkt.clouddn.com/india.jpg',
   '2018-06-05 22:00:00',
   '2018-06-05 22:00:00'
 );

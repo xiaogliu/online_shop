@@ -73,4 +73,11 @@ export default {
     }
     return str;
   },
+  // 格式化金额，添加 ¥ 同时返回相应 html，通过css添加样式
+  formatMoney(numb) {
+    const formatN = (numb / 100).toFixed(2).toString();
+    const integerN = parseInt(formatN, 10);
+    const floatN = formatN.substr(formatN.indexOf('.'), 3);
+    return `<span>¥ </span>${integerN}<span>${floatN}</span>`;
+  },
 };

@@ -14,6 +14,6 @@ CREATE TABLE `swiper` (
 LOCK TABLES `swiper` WRITE;
 
 INSERT INTO `swiper`(`id`, `img_url`, `path`, `created_at`, `updated_at`)
-VALUES(1, 'http://oifk6rgqz.bkt.clouddn.com/1.jpg', 'http://oifk6rgqz.bkt.clouddn.com/1.jpg', '2018-05-16 22:00:00', '2018-05-16 22:00:00')
+VALUES(1, 'http://oifk6rgqz.bkt.clouddn.com/1.jpg', 'http://oifk6rgqz.bkt.clouddn.com/1.jpg', '2018-05-16 22:00:00', '2018-05-16 22:00:00');
 
 UNLOCK TABLES;

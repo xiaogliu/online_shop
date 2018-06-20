@@ -1,5 +1,5 @@
 <template>
   <div>
-    <p>people</p>
+    <p>我的</p>
   </div>
 </template>

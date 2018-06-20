@@ -1,31 +1,36 @@
 <template>
-  <div class="signup">
-    <div class="go-home">
-      <button @click="goPage('./login')">登录</button>
-    </div>
-    <div class="welcome">
-      <p>注册账号</p>
-    </div>
-    <div class="pw">
-      <input type="text" v-model='info.email' placeholder="请输入邮箱地址">
-    </div>
-    <div class="pw">
-      <input type="text" v-model='info.username' placeholder="请输入用户名">
-    </div>
-    <div class="pw">
-      <input type="password" maxlength="18" v-model='info.password' placeholder="请设置6～18位登录密码">
-    </div>
-    <div class="pw">
-      <input type="password" maxlength="18" v-model='info.verifyPassword' placeholder="请重新输入6～18位登录密码">
-    </div>
-    <div class="pw email-verify-code">
-      <input v-model="captcha.code" class="input-email-verify" type="text" placeholder="请输入邮箱验证码">
-      <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="processMethods.getCaptcha">{{ captcha.msg }}</button>
-    </div>
-    <div class="button-signup">
-      <button @click="processMethods.signup">注册</button>
-    </div>
-  </div>
+  <section class="signup">
+    <header>
+      <p @click="goBack"><img src="../assets/img/back.svg" alt=""></p>
+      <div class="go-home">
+        <button @click="goPage('./login')">登录</button>
+      </div>
+    </header>
+    <article>
+      <div class="welcome">
+        <p>注册账号</p>
+      </div>
+      <div class="pw">
+        <input type="text" v-model='info.email' placeholder="请输入邮箱地址">
+      </div>
+      <div class="pw">
+        <input type="text" v-model='info.username' placeholder="请输入用户名">
+      </div>
+      <div class="pw">
+        <input type="password" maxlength="18" v-model='info.password' placeholder="请设置6～18位登录密码">
+      </div>
+      <div class="pw">
+        <input type="password" maxlength="18" v-model='info.verifyPassword' placeholder="请重新输入6～18位登录密码">
+      </div>
+      <div class="pw email-verify-code">
+        <input v-model="captcha.code" class="input-email-verify" type="text" placeholder="请输入邮箱验证码">
+        <button :disabled="captcha.isGrey" class="btn-get-email-v" @click="processMethods.getCaptcha">{{ captcha.msg }}</button>
+      </div>
+      <div class="button-signup">
+        <button @click="processMethods.signup">注册</button>
+      </div>
+    </article>
+  </section>
 </template>
 
 <script>
@@ -56,6 +61,9 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     goPage(page) {
       this.$router.push(page);
     },
@@ -146,13 +154,30 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .signup {
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  padding-bottom: pxToRem(50px);
-  background: url('../assets/img/login_bg.jpg') 100% / contain;
+  padding: 0 pxToRem(20px);
+
+  header {
+    height: pxToRem(90px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    p {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: pxToRem(90px);
+      height: pxToRem(90px);
+      img {
+        width: pxToRem(60px);
+        height: pxToRem(60px);
+      }
+    }
+  }
   .go-home {
     position: fixed;
     height: pxToRem(88px);
@@ -163,7 +188,6 @@ export default {
       height: pxToRem(88px);
       background: 0;
       font-size: $fontSizeMain;
-      color: #fff;
     }
   }
   .welcome,
@@ -176,10 +200,9 @@ export default {
     color: #aaa;
   }
   .welcome {
-    padding: pxToRem(130px) 0 pxToRem(50px);
+    padding: pxToRem(100px) 0 pxToRem(50px);
     p {
       font-size: pxToRem(40px);
-      color: #fff;
     }
   }
   .pw {
@@ -216,12 +239,12 @@ export default {
       height: pxToRem(81px);
       border: 0;
       outline: none;
-      background-color: #ffda44;
-      font-size: $fontSizeMain;
-      color: #007480;
+      background-color: $colorMain;
+      font-size: $fontSizeSmall;
+      color: #ffffff;
       &:disabled {
         background-color: #ddd;
-        color: #fff;
+        color: #ffffff;
       }
     }
   }
@@ -229,12 +252,12 @@ export default {
     margin-top: pxToRem(50px);
     button {
       width: pxToRem(600px);
-      height: pxToRem(100px);
-      line-height: pxToRem(100px);
+      height: pxToRem(90px);
+      line-height: pxToRem(90px);
       margin: 0 auto;
-      color: #007480;
+      color: #ffffff;
       font-size: $fontSizeLargeX;
-      background-color: #ffda44;
+      background-color: $colorMain;
     }
   }
 }

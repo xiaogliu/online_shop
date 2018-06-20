@@ -11,23 +11,21 @@
         <!-- <img src="../../assets/img/home.svg" alt="home"> -->
         <p>首页</p>
       </router-link>
-      <div class="tab-item">
-        <router-link to="/home/allProduct" tag='div' class="tab-item">
-          <div class="tab-icon tab-icon-all"></div>
-          <!-- <img src="../../assets/img/all.svg" alt="home"> -->
-          <p>分类</p>
-        </router-link>
-      </div>
-      <router-link to="/home/cart" tag='div' class="tab-item">
+      <router-link to="/home/allProduct" tag='div' class="tab-item">
+        <div class="tab-icon tab-icon-all"></div>
+        <!-- <img src="../../assets/img/all.svg" alt="home"> -->
+        <p>分类</p>
+      </router-link>
+      <div @click="goPage('/home/cart')" class="tab-item">
         <div class="tab-icon tab-icon-cart"></div>
         <!-- <img src="../../assets/img/cart.svg" alt="home"> -->
         <p>购物车</p>
-      </router-link>
-      <router-link to="/home/people" tag='div' class="tab-item">
+      </div>
+      <div @click="goPage('/home/people')" class="tab-item">
         <div class="tab-icon tab-icon-people"></div>
         <!-- <img src="../../assets/img/people.svg" alt="home"> -->
         <p>我的</p>
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -45,8 +43,18 @@ export default {
     };
   },
   methods: {
-    goPage() {
-      this.$router.push('/login');
+    goPage(path) {
+      console.log(this.$store.state.userInfo.uid);
+      if (!this.$store.state.userInfo.uid) {
+        this.$router.push({
+          name: 'login',
+          params: {
+            from: path,
+          },
+        });
+      } else {
+        this.$router.push(path);
+      }
     },
   },
 };

@@ -1,13 +1,15 @@
 <template>
-  <article class="main">
-    <swiper v-if="products.swiper.length">
-      <div class="page" v-for="item in products.swiper" :key="item.id">
-        <a :href="item.path">
-          <img :src="item.img_url" alt="首页消息">
-        </a>
-      </div>
-    </swiper>
-    <section class="badge">
+  <section class="main">
+    <article class="swiper">
+      <swiper v-if="products.swiper.length">
+        <div class="page" v-for="item in products.swiper" :key="item.id">
+          <a :href="item.path">
+            <img :src="item.img_url" alt="首页消息">
+          </a>
+        </div>
+      </swiper>
+    </article>
+    <article class="badge">
       <div>
         <img src="../../assets/img/favor.svg" alt="好货推荐">
         <p>好货推荐</p>
@@ -24,8 +26,8 @@
         <img src="../../assets/img/about.svg" alt="领取红包">
         <p>平台介绍</p>
       </div>
-    </section>
-    <section class="home-recommends2">
+    </article>
+    <article class="home-recommends2">
       <!-- 广告商品 -->
       <div class="left">
         <div class="text">
@@ -56,8 +58,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="more-product">
+    </article>
+    <article class="more-product">
       <p class="intro">
         <span>-</span>
         <span>更</span>
@@ -71,12 +73,12 @@
           <img v-lazy="item.img_url" alt="更多产品">
           <div class="item-text">
             <p>{{ utils.limitStringLength(item.description, 25) }}</p>
-            <p>¥ {{ item.price }}</p>
+            <p v-html="utils.formatMoney(item.price)"></p>
           </div>
         </div>
       </div>
-    </section>
-  </article>
+    </article>
+  </section>
 </template>
 
 <script>
@@ -92,7 +94,7 @@ export default {
       utils: null,
       products: {
         swiper: [],
-        main: [],
+        main: [{}, {}, {}],
         bottom: [],
       },
     };
@@ -115,11 +117,11 @@ export default {
             break;
           case 'bottom':
             this.products.bottom = res.data.data;
+            Loading.close();
             break;
           default:
             break;
         }
-        Loading.close();
       } catch (e) {
         Toast(e.response.data.msg);
         Loading.close();
@@ -136,8 +138,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .main {
+  .swiper {
+    height: pxToRem(360px);
+  }
   .badge {
     display: flex;
     justify-content: space-around;
@@ -287,6 +292,9 @@ export default {
             padding: 0 pxToRem(10px);
             font-size: $fontSizeMain;
             color: $colorMain;
+            span {
+              font-size: $fontSizeSmall;
+            }
           }
         }
       }

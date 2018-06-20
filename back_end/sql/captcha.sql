@@ -7,7 +7,7 @@ CREATE TABLE `captcha` (
   `captcha` VARCHAR(32) NOT NULL DEFAULT '',
   `email` VARCHAR(64) NOT NULL DEFAULT '',
   `created_at` TIMESTAMP NULL DEFAULT NULL,
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `captcha` WRITE;

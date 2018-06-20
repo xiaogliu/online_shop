@@ -100,7 +100,11 @@ export default {
       };
 
       // 避免前后快速滑动出现白屏
-      if ((this.currentContainerLeft > -this.pageWidth && this.timer) || (this.currentContainerLeft < -this.pageWidth * this.pagesNum && this.timer)) {
+      if (
+        (this.currentContainerLeft > -this.pageWidth && this.timer) ||
+        (this.currentContainerLeft < -this.pageWidth * this.pagesNum &&
+          this.timer)
+      ) {
         clearTimeout(this.timer);
         adjustPosition();
         return;
@@ -111,15 +115,23 @@ export default {
       this.turnPage(this.currentContainerLeft);
 
       // 滑动到最前最后调整page
-      if (this.currentContainerLeft > -this.pageWidth || this.currentContainerLeft < -this.pageWidth * this.pagesNum) {
+      if (
+        this.currentContainerLeft > -this.pageWidth ||
+        this.currentContainerLeft < -this.pageWidth * this.pagesNum
+      ) {
         this.timer = setTimeout(adjustPosition, this.TRANSITION_TIME);
       } else {
         // 这里要 bind this ！！！！！！
-        this.timer = setTimeout(this.changeNavStyle.bind(this), this.TRANSITION_TIME);
+        this.timer = setTimeout(
+          this.changeNavStyle.bind(this),
+          this.TRANSITION_TIME,
+        );
       }
     },
     turnPage(position) {
-      this.swiperContainer.style.transitionDuration = `${this.TRANSITION_TIME}ms`;
+      this.swiperContainer.style.transitionDuration = `${
+        this.TRANSITION_TIME
+      }ms`;
       this.swiperContainer.style.transform = `translate3d(${position}px, 0, 0)`;
     },
     changeNavStyle() {
@@ -145,7 +157,9 @@ export default {
     getNewPosition() {
       this.pageWidth = document.documentElement.clientWidth;
       this.currentContainerLeft = -(this.currentPageIndex * this.pageWidth);
-      this.swiperContainer.style.transform = `translate3d(${this.currentContainerLeft}px, 0, 0)`;
+      this.swiperContainer.style.transform = `translate3d(${
+        this.currentContainerLeft
+      }px, 0, 0)`;
     },
     handleWindowResize(event) {
       // 设置防抖动函数
