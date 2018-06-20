@@ -7,7 +7,7 @@ const LoadingConstructor = Vue.extend(l);
 let instance;
 const Loading = {
   open(options = {}) {
-    // 避免建立太多 Vue 子实例
+    // 避免建立太多 Vue 子实例，每次只能出现一个 loading
     if (!instance) {
       instance = new LoadingConstructor().$mount(document.createElement('div'));
     }
@@ -21,7 +21,8 @@ const Loading = {
   },
 
   close() {
-    if (instance) {
+    // 如果仅仅是判断 instance，那么打开一次，关闭两次会报错
+    if (instance.$el.parentNode) {
       instance.visible = false;
       instance.$el.parentNode.removeChild(instance.$el);
     }
