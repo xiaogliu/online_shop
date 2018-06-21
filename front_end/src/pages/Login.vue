@@ -74,7 +74,11 @@ export default {
           Loading.open();
           const res = await requests.login(bodyPar);
           this.$store.commit('updateUserInfo', res.data.data);
-          this.$router.push(this.routeParams.from);
+          if (this.routeParams.from) {
+            this.$router.push(this.routeParams.from);
+          } else {
+            this.$router.push('/home/main');
+          }
           Loading.close();
           Toast('登录成功');
         }
