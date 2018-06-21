@@ -3,9 +3,9 @@ const mysql = require('mysql2');
 exports.getConnection = function() {
   const connection = mysql.createConnection({
     host: 'localhost',
-    database: 'online_shop',
-    user: 'root',
-    password: 'ZAQ1xsw2',
+    database: 'your database',
+    user: 'username',
+    password: 'password',
   });
   connection.connect();
   return connection;

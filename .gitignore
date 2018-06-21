@@ -7,6 +7,8 @@ design/
 
 # 避免不同环境下环境变量相互覆盖
 env.js
+# 数据库相关
+connection.js
 
 # 自动发送邮件敏感信息
 email.js
