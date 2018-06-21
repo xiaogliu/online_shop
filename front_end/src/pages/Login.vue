@@ -45,11 +45,19 @@ export default {
         coin: require('../assets/img/coin.png'),
         coin3x: require('../assets/img/coin@3x.png'),
       },
+      routeParams: {},
     };
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      if (
+        this.routeParams.from === 'home/cart' ||
+        this.routeParams.from === 'home/people'
+      ) {
+        this.$router.go(-2);
+      } else {
+        this.$router.go(-1);
+      }
     },
     goPage(page) {
       this.$router.push(page);
@@ -66,7 +74,7 @@ export default {
           Loading.open();
           const res = await requests.login(bodyPar);
           this.$store.commit('updateUserInfo', res.data.data);
-          this.$router.push('home/people');
+          this.$router.push(this.routeParams.from);
           Loading.close();
           Toast('登录成功');
         }
@@ -79,6 +87,7 @@ export default {
   created() {
     utils.changeImgSrc(this.imgSrc);
     this.processMethods.login = utils.throttle(this.login, this, 2000);
+    this.routeParams = this.$route.params;
   },
   mounted() {
     // utils.changeImgSrc(this.imgSrc);

@@ -7,25 +7,17 @@
 <script type="text/ecmascript-6">
 export default {
   data() {
-    return {
-      recommends: [
-        {
-          linkUrl: 'http://ol9ge41ud.bkt.clouddn.com/pure_full_page.png',
-          picUrl: 'http://ol9ge41ud.bkt.clouddn.com/pure_full_page.png',
-          id: 0,
+    return {};
+  },
+  created() {
+    if (!this.$store.state.userInfo.uid) {
+      this.$router.push({
+        name: 'login',
+        params: {
+          from: 'home/cart',
         },
-        {
-          linkUrl: 'http://ol9ge41ud.bkt.clouddn.com/2017-02-12_201337.png',
-          picUrl: 'http://ol9ge41ud.bkt.clouddn.com/2017-02-12_201337.png',
-          id: 1,
-        },
-        {
-          linkUrl: 'http://ol9ge41ud.bkt.clouddn.com/bracket.png',
-          picUrl: 'http://ol9ge41ud.bkt.clouddn.com/bracket.png',
-          id: 2,
-        },
-      ],
-    };
+      });
+    }
   },
 };
 </script>

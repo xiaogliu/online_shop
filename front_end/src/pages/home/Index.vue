@@ -16,16 +16,16 @@
         <!-- <img src="../../assets/img/all.svg" alt="home"> -->
         <p>分类</p>
       </router-link>
-      <div @click="goPage('/home/cart')" class="tab-item">
+      <router-link to="/home/cart" tag='div' class="tab-item">
         <div class="tab-icon tab-icon-cart"></div>
         <!-- <img src="../../assets/img/cart.svg" alt="home"> -->
         <p>购物车</p>
-      </div>
-      <div @click="goPage('/home/people')" class="tab-item">
+      </router-link>
+      <router-link to="/home/people" tag='div' class="tab-item">
         <div class="tab-icon tab-icon-people"></div>
         <!-- <img src="../../assets/img/people.svg" alt="home"> -->
         <p>我的</p>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -42,21 +42,7 @@ export default {
       selected: '外卖',
     };
   },
-  methods: {
-    goPage(path) {
-      console.log(this.$store.state.userInfo.uid);
-      if (!this.$store.state.userInfo.uid) {
-        this.$router.push({
-          name: 'login',
-          params: {
-            from: path,
-          },
-        });
-      } else {
-        this.$router.push(path);
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
