@@ -83,6 +83,7 @@ export default {
         if (!utils.checkEmail(this.info.email)) {
           Toast('请输入正确的邮箱地址');
         } else {
+          Loading.open();
           const bodyPar = {
             action: 'resetPwd',
             email: this.info.email,
@@ -90,9 +91,11 @@ export default {
           await requests.sendCaptcha(bodyPar);
           this.captcha.isGrey = true;
           this.countDown();
+          Loading.close();
           Toast('邮件发送成功，验证码30分钟内有效');
         }
       } catch (e) {
+        Loading.close();
         Toast(e.response.data.msg);
       }
     },
