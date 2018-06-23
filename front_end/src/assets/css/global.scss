@@ -60,4 +60,8 @@ body {
 div {
   box-sizing: border-box;
 }
+// 移动端隐藏滚动条
+::-webkit-scrollbar {
+  display:none;
+}
 // ***************** pre-setting end ***************** //
