@@ -70,10 +70,12 @@
       </p>
       <div class="more-main">
         <div class="more-item" v-for="item in products.bottom" :key="item.id">
-          <img v-lazy="item.img_url" alt="更多产品">
-          <div class="item-text">
-            <p>{{ utils.limitStringLength(item.description, 25) }}</p>
-            <p v-html="utils.formatMoney(item.price)"></p>
+          <div class="more-item-content">
+            <img v-lazy="item.img_url" alt="更多产品">
+            <div class="item-text">
+              <p>{{ utils.limitStringLength(item.description, 25) }}</p>
+              <p v-html="utils.formatMoney(item.price)"></p>
+            </div>
           </div>
         </div>
       </div>
@@ -141,6 +143,7 @@ export default {
 <style lang="scss">
 .main {
   .swiper {
+    width: 100%;
     height: pxToRem(360px);
   }
   .badge {
@@ -262,38 +265,41 @@ export default {
       }
     }
     .more-main {
-      display: flex;
-      flex-wrap: wrap;
       margin-bottom: pxToRem(100px);
+      overflow: auto;
       .more-item {
         box-sizing: border-box;
-        width: pxToRem(370px);
-        margin-bottom: pxToRem(10px);
-        background-color: #fff;
+        float: left;
+        width: 50%;
+        padding-bottom: pxToRem(10px);
         &:nth-child(even) {
-          margin-left: pxToRem(5px);
+          padding-left: pxToRem(5px);
         }
         &:nth-child(odd) {
-          margin-right: pxToRem(5px);
+          padding-right: pxToRem(5px);
         }
-        img {
-          width: pxToRem(370px);
-          height: pxToRem(370px);
-        }
-        .item-text {
-          p:first-child {
-            height: pxToRem(74px);
-            padding: 0 pxToRem(10px);
-            font-size: $fontSizeSmall;
+        .more-item-content {
+          overflow: hidden;
+          background-color: #fff;
+          img {
+            width: pxToRem(370px);
+            height: pxToRem(370px);
           }
-          p:last-child {
-            height: pxToRem(50px);
-            line-height: pxToRem(50px);
-            padding: 0 pxToRem(10px);
-            font-size: $fontSizeMain;
-            color: $colorMain;
-            span {
+          .item-text {
+            p:first-child {
+              height: pxToRem(74px);
+              padding: 0 pxToRem(10px);
               font-size: $fontSizeSmall;
+            }
+            p:last-child {
+              height: pxToRem(50px);
+              line-height: pxToRem(50px);
+              padding: 0 pxToRem(10px);
+              font-size: $fontSizeMain;
+              color: $colorMain;
+              span {
+                font-size: $fontSizeSmall;
+              }
             }
           }
         }

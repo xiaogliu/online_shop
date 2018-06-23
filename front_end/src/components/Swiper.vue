@@ -188,7 +188,7 @@ export default {
 <style lang="scss" scoped>
 #swiper {
   position: relative;
-  width: pxToRem(750px);
+  width: 100vw;
   transition: width 500ms;
   overflow: hidden;
   #swiperContainer {
@@ -198,12 +198,13 @@ export default {
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     touch-action: none;
     .page {
-      width: pxToRem(750px);
+      width: 100vw;
       transition: width 500ms;
       height: 100%;
       img {
-        width: pxToRem(750px);
-        max-width: pxToRem(750px);
+        width: 100vw;
+        max-width: 100vw;
+        height: 100%;
       }
     }
   }

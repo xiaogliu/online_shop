@@ -22,7 +22,6 @@ $isHidpi: '(-webkit-min-device-pixel-ratio: 2.5),
 }
 // ***************** function/mixin end ***************** //
 
-
 // ***************** variable start ***************** //
 // 标准色
 $bgColor: #f7f7f7;
@@ -57,11 +56,17 @@ body {
   font-size: $fontSizeMain;
   box-sizing: border-box;
 }
+
 div {
   box-sizing: border-box;
 }
 // 移动端隐藏滚动条
-::-webkit-scrollbar {
-  display:none;
+html {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+html::-webkit-scrollbar {
+  width: 0px;
 }
 // ***************** pre-setting end ***************** //
