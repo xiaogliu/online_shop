@@ -4,7 +4,7 @@
       <p @click="goBack"><img src="../assets/img/back.svg" alt=""></p>
     </header>
     <article class="swiper">
-      <swiper v-if="product.banner.length" :autoPlay=false :swiperHeight=750>
+      <swiper v-if="product.banner.length" :swiperHeight=750>
         <div class="page" v-for="item in product.banner" :key="item.id">
           <img :src="item" alt="首页消息">
         </div>
