@@ -162,7 +162,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  padding: 0 pxToRem(20px);
+  // padding: 0 pxToRem(20px);
 
   header {
     height: pxToRem(90px);

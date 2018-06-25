@@ -60,13 +60,9 @@ body {
 div {
   box-sizing: border-box;
 }
-// 移动端隐藏滚动条
-html {
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
-}
-
-html::-webkit-scrollbar {
-  width: 0px;
+// 防止 font-boosting
+html * {
+  max-height: 100%;
+  -webkit-text-size-adjust: none;
 }
 // ***************** pre-setting end ***************** //

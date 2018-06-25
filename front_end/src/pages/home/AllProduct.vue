@@ -4,7 +4,7 @@
       <input type="text" placeholder="输入关键字进行搜索">
       <button @click="processMethods.search">搜索</button>
     </header>
-    <article>
+    <article @click='goPage("/product/1")'>
       <div class="product-item" v-for="item in products.all" :key="item.id">
         <img v-lazy="item.img_url" alt="item.title">
         <div>
@@ -39,6 +39,10 @@ export default {
   methods: {
     searchProduct() {
       console.log('search');
+    },
+    goPage(path) {
+      console.log(path);
+      this.$router.push(path);
     },
     async init() {
       try {

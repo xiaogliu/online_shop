@@ -106,7 +106,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  padding: 0 pxToRem(20px);
+  // padding: 0 pxToRem(20px);
   // background: 100% / contain;
   // @include bgImageResize('../assets/img/login_bg', 'jpg');
   //

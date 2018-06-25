@@ -132,6 +132,7 @@ export default {
       this.swiperContainer.style.transitionDuration = `${
         this.TRANSITION_TIME
       }ms`;
+      // console.log(111, position);
       this.swiperContainer.style.transform = `translate3d(${position}px, 0, 0)`;
     },
     changeNavStyle() {
@@ -157,6 +158,7 @@ export default {
     getNewPosition() {
       this.pageWidth = document.documentElement.clientWidth;
       this.currentContainerLeft = -(this.currentPageIndex * this.pageWidth);
+      // console.log(111, this.currentContainerLeft);
       this.swiperContainer.style.transform = `translate3d(${
         this.currentContainerLeft
       }px, 0, 0)`;
@@ -180,12 +182,15 @@ export default {
     this.swiperContainer.addEventListener('touchend', handleTouchEnd);
 
     // 如果指定宽度，不随窗口变化
-    window.addEventListener('resize', this.handleWindowResize.bind(this));
+    setTimeout(() => {
+      // 避免 DOM 完全渲染完前执行
+      window.addEventListener('resize', this.handleWindowResize.bind(this));
+    }, 1000);
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #swiper {
   position: relative;
   width: 100vw;

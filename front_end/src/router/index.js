@@ -8,6 +8,7 @@ import AllProduct from '../pages/home/AllProduct.vue';
 import Main from '../pages/home/Main.vue';
 import Cart from '../pages/home/Cart.vue';
 import People from '../pages/home/People.vue';
+import ProductDetail from '../pages/ProductDetail.vue';
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ export default new Router({
           component: People,
         },
       ],
+    },
+    {
+      path: '/product/:id',
+      name: 'productDetail',
+      component: ProductDetail,
     },
     {
       path: '/login',

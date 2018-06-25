@@ -1,11 +1,11 @@
 <template>
-  <section class="main">
+  <section class="main" @click='goPage("/product/1")'>
     <article class="swiper">
       <swiper v-if="products.swiper.length">
         <div class="page" v-for="item in products.swiper" :key="item.id">
-          <a :href="item.path">
-            <img :src="item.img_url" alt="首页消息">
-          </a>
+          <!-- <a :href="item.path"> -->
+          <img :src="item.img_url" alt="首页消息">
+          <!-- </a> -->
         </div>
       </swiper>
     </article>
@@ -102,8 +102,8 @@ export default {
     };
   },
   methods: {
-    goPage() {
-      this.$router.push('/login');
+    goPage(path) {
+      this.$router.push(path);
     },
     async getHomeProducts(type) {
       try {
