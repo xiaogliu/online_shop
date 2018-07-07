@@ -1,1 +1,115 @@
-fieldset,hr,img{border:none}article,aside,blockquote,body,button,dd,details,dl,dt,fieldset,figcaption,figure,footer,h1,h2,h3,h4,h5,h6,header,hgroup,hr,input,lengend,li,main,nav,ol,p,pre,section,summary,td,textarea,th,ul{margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}body{font:14px/1.5 "Microsoft YaHei","Hiragino Sans GB","Microsoft YaHei light",Arial,Helvetica,sans-serif,"宋体"}button,h1,h2,h3,h4,h5,h6,input,select,textarea{font-size:100%}small{font-size:12px}ol,ul{list-style:none}a,a:hover{text-decoration:none}q:after,q:before{content:''}legend{color:#000}button{outline:0;cursor:pointer;border:none;}table{border-collapse:collapse;border-spacing:0}hr{height:1px}html{overflow-y:scroll}img{max-width:100%}input{outline:none;border:none;}
+fieldset,
+hr,
+img {
+  border: none;
+}
+article,
+aside,
+blockquote,
+body,
+button,
+dd,
+details,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+input,
+lengend,
+li,
+main,
+nav,
+ol,
+p,
+pre,
+section,
+summary,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+small {
+  font-size: 12px;
+}
+ol,
+ul {
+  list-style: none;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+q:after,
+q:before {
+  content: "";
+}
+legend {
+  color: #000;
+}
+button {
+  outline: 0;
+  cursor: pointer;
+  border: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+hr {
+  height: 1px;
+}
+html {
+  overflow-y: scroll;
+}
+img {
+  max-width: 100%;
+}
+input {
+  outline: none;
+  border: none;
+}
+body {
+  font: 14px/1.5 system, -apple-system, "BlinkMacSystemFont", "PingFang SC",
+    "Helvetica Neue", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  color: #333;
+}

@@ -2,6 +2,7 @@
   <section class="product-detail">
     <header>
       <p @click="goBack"><img src="../assets/img/back.svg" alt=""></p>
+      <h2>产品详情</h2>
     </header>
     <article class="swiper">
       <swiper v-if="product.banner.length" :swiperHeight=750>
@@ -112,6 +113,7 @@ export default {
   // BFC
   overflow: hidden;
   header {
+    position: relative;
     height: pxToRem(90px);
     line-height: pxToRem(90px);
     background-color: #ffffff;
@@ -125,6 +127,14 @@ export default {
         width: pxToRem(60px);
         height: pxToRem(60px);
       }
+    }
+    h2 {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      font-size: $fontSizeLarge;
+      font-weight: 400;
     }
   }
   .swiper {
