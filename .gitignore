@@ -19,3 +19,4 @@ email.js
 *.ntvs*
 *.njsproj
 *.sln
+.vscode
