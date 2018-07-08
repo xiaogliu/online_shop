@@ -1,0 +1,47 @@
+// rem 转换函数
+@function pxToRem($px) {
+  $rem: 75px;
+  @return ($px / $rem) + rem;
+}
+
+// 高清图片适配
+$isHidpi: '(-webkit-min-device-pixel-ratio: 2.5),
+(min--moz-device-pixel-ratio: 2.5),
+(-o-min-device-pixel-ratio: 5/2),
+(min-device-pixel-ratio: 2.5),
+(min-resolution: 2.5dppx)';
+
+@mixin bgImageResize($path, $type) {
+  background-image: url($path+'.'+$type);
+  @media #{$isHidpi} {
+    & {
+      background-image: url($path+'@3x.'+$type);
+    }
+  }
+}
+
+// 自定义checkbox样式
+@mixin checkbox($imgPath) {
+  input {
+    display: none;
+  }
+  input + label::before {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    left: pxToRem(15px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: pxToRem(40px);
+    height: pxToRem(40px);
+    border: 1px solid $fontColorAssist;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: 0.1s all;
+  }
+  input:checked + label::before {
+    background: url($imgPath) center/100%;
+    border: 1px solid $colorMain;
+  }
+}
