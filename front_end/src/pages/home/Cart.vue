@@ -22,11 +22,12 @@
       </div>
     </section>
     <footer>
-      <div>
-        <input type="checkbox" id="chooseAll"><label for="chooseAll">全选</label>
+      <div class="checkbox">
+        <input type="checkbox" id="chooseAll">
+        <label for="chooseAll">全选</label>
       </div>
       <div>
-        <span>合计：$ 1999</span>
+        <p>合计：$ 1999</p>
       </div>
       <button>
         去结算
@@ -55,7 +56,7 @@ export default {
     changeCount(type) {
       if (type === 'add') {
         this.buyCount += 1;
-      } else if (this.buyCount > 1){
+      } else if (this.buyCount > 1) {
         this.buyCount -= 1;
       } else {
         Toast('至少选择一件');
@@ -69,7 +70,6 @@ export default {
         };
         const res = await requests.getHomeInfo(urlPar);
         this.cartArr = res.data.data;
-        console.log(this.cartArr);
         Loading.close();
       } catch (e) {
         Toast(e.response.data.msg);
@@ -172,34 +172,35 @@ export default {
     left: 0;
     bottom: 0;
     display: flex;
+    align-items: center;
     width: 100vw;
     height: pxToRem(100px);
     border-top: 1px solid $fontColorPlaceholder;
     background-color: #ffffff;
     z-index: 9999;
-    & > div {
+    div {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      flex: 1;
-      img {
-        width: pxToRem(80px);
-        height: pxToRem(80px);
+      height: 100%;
+      p,
+      label {
+        font-size: $fontSizeLarge;
       }
-      p {
-        color: $fontColorPlaceholder;
-        font-size: $fontSizeSmallX;
+      &.checkbox {
+        justify-content: center;
+        width: pxToRem(200px);
+      }
+      @include checkbox('../../assets/img/checked.png');
+      &:last-of-type {
+        width: pxToRem(300px);
       }
     }
-    button:first-of-type {
+    button {
       flex: 1;
-      background-color: $colorAssist;
-      color: #fff;
-    }
-    button:last-child {
-      flex: 1;
+      height: 100%;
       background-color: $colorMain;
       color: #ffffff;
+      font-size: $fontSizeLarge;
     }
   }
 }
