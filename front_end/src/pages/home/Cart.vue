@@ -6,18 +6,26 @@
     </header>
     <section class="cart-items-container">
       <div class="cart-item" v-for="item in cartArr" :key="item.id">
-        <span>{{ item.id }}</span>
+        <div class="checkbox">
+          <input type="checkbox" :id="'cartItem' + item.id">
+          <label :for="'cartItem' + item.id"></label>
+        </div>
         <div class="main-info">
           <img :src="item.img_url" alt="产品图片">
           <div class="text-dis">
-            <p>{{ item.title }}</p>
+            <p>{{ utils.limitStringLength(item.title, 28) }}</p>
             <div class="choose-count">
               <button @click="changeCount">-</button>
-              <input type="text" value="1" v-model="buyCount" readonly>
+              <input type="text" value="1" v-model="item.count" readonly>
               <button @click="changeCount('add')">+</button>
             </div>
           </div>
-          <div class="price-op">22</div>
+          <div class="price-op">
+            <p class="price" v-html="utils.formatMoney(item.price)"></p>
+            <div class="cart-delete">
+              <img src="../../assets/img/delete.png" alt="删除">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -26,8 +34,9 @@
         <input type="checkbox" id="chooseAll">
         <label for="chooseAll">全选</label>
       </div>
-      <div>
-        <p>合计：$ 1999</p>
+      <div class="total-money">
+        合计：
+        <p class="price" v-html="utils.formatMoney(18888)"></p>
       </div>
       <button>
         去结算
@@ -47,6 +56,7 @@ export default {
     return {
       cartArr: [],
       buyCount: 1,
+      utils: {},
     };
   },
   methods: {
@@ -86,6 +96,8 @@ export default {
           from: 'home/cart',
         },
       });
+    } else {
+      this.utils = utils;
     }
   },
   mounted() {
@@ -130,8 +142,14 @@ export default {
     .cart-item {
       display: flex;
       background-color: #ffffff;
-      span {
-        width: pxToRem(60px);
+      .checkbox {
+        width: pxToRem(80px);
+        @include checkbox("../../assets/img/checked.png");
+        label {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
       .main-info {
         display: flex;
@@ -143,13 +161,23 @@ export default {
           height: pxToRem(150px);
         }
         .text-dis {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          flex: 1;
+          p {
+            font-size: $fontSizeSmall;
+          }
           .choose-count {
             display: flex;
-            margin: 0 pxToRem(20px);
+            width: pxToRem(280px);
             border: 1px solid $fontColorPlaceholder;
             button {
               width: pxToRem(80px);
               height: pxToRem(60px);
+              line-height: pxToRem(60px);
+              color: $colorMain;
               background-color: #ffffff;
             }
             button:first-of-type {
@@ -161,6 +189,33 @@ export default {
             input {
               width: pxToRem(130px);
               text-align: center;
+            }
+          }
+        }
+        .price-op {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          width: pxToRem(180px);
+          p.price {
+            font-size: $fontSizeLarge;
+            color: $colorMain;
+            font-weight: 600;
+            span {
+              font-size: $fontSizeSmall;
+            }
+          }
+          .cart-delete {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: pxToRem(90px);
+            height: pxToRem(70px);
+            img {
+              width: pxToRem(40px);
+              height: pxToRem(40px);
             }
           }
         }
@@ -190,9 +245,21 @@ export default {
         justify-content: center;
         width: pxToRem(200px);
       }
-      @include checkbox('../../assets/img/checked.png');
+      @include checkbox("../../assets/img/checked.png");
       &:last-of-type {
         width: pxToRem(300px);
+      }
+    }
+    .total-money {
+      font-size: $fontSizeLarge;
+      p.price {
+        flex: 1;
+        font-size: $fontSizeLargeX;
+        color: $colorMain;
+        font-weight: 600;
+        span {
+          font-size: $fontSizeSmall;
+        }
       }
     }
     button {
