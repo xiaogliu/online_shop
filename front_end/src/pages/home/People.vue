@@ -1,7 +1,36 @@
 <template>
-  <div>
-    <p>我的</p>
-  </div>
+  <section class="people-page">
+    <section class="people-top">
+      <div>
+        <img src="../../assets/img/icon-service.png" alt="头像">
+        <p>你好用户</p>
+      </div>
+    </section>
+    <section class="people-main">
+      <div class="people-main-item">
+        <img src="../../assets/img/real_name.png" alt="icon">
+        <p>我的订单</p>
+        <span class="right-arrow"></span>
+      </div>
+      <div class="people-main-item">
+        <img src="../../assets/img/real_name.png" alt="icon">
+        <p>收获地址</p>
+        <span class="right-arrow"></span>
+      </div>
+    </section>
+    <section class="people-main">
+      <div class="people-main-item">
+        <img src="../../assets/img/real_name.png" alt="icon">
+        <p>修改密码</p>
+        <span class="right-arrow"></span>
+      </div>
+      <div class="people-main-item">
+        <img src="../../assets/img/real_name.png" alt="icon">
+        <p>帮助反馈</p>
+        <span class="right-arrow"></span>
+      </div>
+    </section>
+  </section>
 </template>
 <script>
 import Toast from '../../components/Toast/index';
@@ -23,3 +52,64 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.people-page {
+  min-height: 100vh;
+  .people-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: pxToRem(460px);
+    background: linear-gradient(to right bottom, #e66465, #9198e5);
+    img {
+      width: pxToRem(180px);
+      height: pxToRem(180px);
+      border-radius: 50%;
+    }
+    p {
+      margin-top: pxToRem(10px);
+      text-align: center;
+      font-size: $fontSizeLarge;
+      color: #fff;
+    }
+  }
+  .people-main {
+    margin-top: pxToRem(30px);
+    background-color: #fff;
+    div {
+      display: flex;
+      align-items: center;
+      height: pxToRem(100px);
+      padding: 0 pxToRem(20px);
+      &:first-child {
+        border-bottom: 1px solid $bgColor;
+      }
+      img {
+        margin: 0 pxToRem(40px) 0 pxToRem(20px);
+        width: pxToRem(60px);
+        height: pxToRem(60px);
+      }
+      span {
+        position: absolute;
+        right: pxToRem(20px);
+      }
+      span::before,
+      span::after {
+        display: block;
+        content: '';
+        width: pxToRem(24px);
+        height: pxToRem(2px);
+        background-color: #333;
+        margin: pxToRem(14px) 0;
+      }
+      span::before {
+        transform: rotate(45deg);
+      }
+      span::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+</style>

@@ -88,6 +88,7 @@ export default {
     },
   },
   created() {
+    this.utils = utils;
     if (!this.$store.state.userInfo.uid) {
       Toast('请先登录');
       this.$router.push({
@@ -96,8 +97,6 @@ export default {
           from: 'home/cart',
         },
       });
-    } else {
-      this.utils = utils;
     }
   },
   mounted() {
