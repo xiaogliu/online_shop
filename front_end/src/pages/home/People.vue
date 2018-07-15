@@ -2,30 +2,30 @@
   <section class="people-page">
     <section class="people-top">
       <div>
-        <img src="../../assets/img/icon-service.png" alt="头像">
+        <img src="../../assets/img/avatar.png" alt="头像">
         <p>你好用户</p>
       </div>
     </section>
     <section class="people-main">
       <div class="people-main-item">
-        <img src="../../assets/img/real_name.png" alt="icon">
+        <img src="../../assets/img/goods.png" alt="icon">
         <p>我的订单</p>
         <span class="right-arrow"></span>
       </div>
       <div class="people-main-item">
-        <img src="../../assets/img/real_name.png" alt="icon">
+        <img src="../../assets/img/deliver.png" alt="icon">
         <p>收获地址</p>
         <span class="right-arrow"></span>
       </div>
     </section>
     <section class="people-main">
       <div class="people-main-item">
-        <img src="../../assets/img/real_name.png" alt="icon">
+        <img src="../../assets/img/settings.png" alt="icon">
         <p>修改密码</p>
         <span class="right-arrow"></span>
       </div>
       <div class="people-main-item">
-        <img src="../../assets/img/real_name.png" alt="icon">
+        <img src="../../assets/img/question.png" alt="icon">
         <p>帮助反馈</p>
         <span class="right-arrow"></span>
       </div>
@@ -61,7 +61,7 @@ export default {
     align-items: center;
     width: 100%;
     height: pxToRem(460px);
-    background: linear-gradient(to right bottom, #e66465, #9198e5);
+    background: linear-gradient(to right bottom, #fc9ca0, #fcd793);
     img {
       width: pxToRem(180px);
       height: pxToRem(180px);
@@ -87,8 +87,8 @@ export default {
       }
       img {
         margin: 0 pxToRem(40px) 0 pxToRem(20px);
-        width: pxToRem(60px);
-        height: pxToRem(60px);
+        width: pxToRem(50px);
+        height: pxToRem(50px);
       }
       span {
         position: absolute;
